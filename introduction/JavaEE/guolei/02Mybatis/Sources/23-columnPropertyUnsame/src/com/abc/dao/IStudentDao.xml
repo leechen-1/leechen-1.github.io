@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+	<insert id="insertStudent">
+		insert into student(tname,tage,score) values(#{name}, #{age}, #{score})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from student where tid=#{xxx}
+	</delete>
+	
+	<update id="updateStudent">
+		update student set tname=#{name}, tage=#{age}, score=#{score} where tid=#{id}
+	</update>
+	
+	<select id="selectStudentById" resultType="Student">
+		<!-- 给与属性名称不同的字段别名，让别名与属性名称相同 -->
+		select tid id,tname name,tage age,score from student where tid=#{ooo}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
