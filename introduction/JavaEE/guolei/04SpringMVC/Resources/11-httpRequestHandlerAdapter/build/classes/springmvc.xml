@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器映射器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<!-- <property name="mappings">
+			<props>
+				<prop key="/first.do">some</prop>
+				<prop key="/second.do">some</prop>
+			</props>
+		</property> -->
+		<property name="urlMap">
+			<map>
+				<entry key="/first.do" value="some"/>
+				<entry key="/second.do" value="some"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="some" class="com.abc.handlers.SomeHandler"/>
+
+</beans>
