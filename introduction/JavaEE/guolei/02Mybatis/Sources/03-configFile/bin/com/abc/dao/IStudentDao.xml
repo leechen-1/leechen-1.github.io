@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+
+	<!-- 
+		1）这里的parameterType属性可以省略 
+		2）SQL语句中的values中的内容，要求必须是#{}，其中name，age，score
+			指是参数对象的属性。其底层是通过反射机制从参数对象的get方法中获取到
+			其相应的属性值
+	-->
+	<insert id="insertStu" parameterType="Student">
+		insert into student(name,age,score) values(#{name}, #{age}, #{score})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+

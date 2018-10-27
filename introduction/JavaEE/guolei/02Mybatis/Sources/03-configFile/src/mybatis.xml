@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 注册属性文件 -->
+	<properties resource="jdbc.properties" />
+
+	<typeAliases>
+		<!-- 为实体类指定别名 -->
+		<!-- <typeAlias type="com.abc.beans.Student" alias="Student"/> -->
+		<!-- 为指定包中的所有类指定别名，别名为该类的简单类名 -->
+		<package name="com.abc.beans"/>
+	</typeAliases>
+
+	<!-- 配置运行环境 -->
+	<environments default="mysqlEM">
+	
+		<environment id="mysqlEM">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+		
+		<environment id="oracleEM">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 注册映射文件 -->
+	<mappers>
+		<!-- <mapper resource="com/abc/dao/mapper.xml" /> -->
+		<!-- 下面的方式可以使映射文件存放到本地文件系统，但此方式不常用 -->
+		<!-- <mapper url="file:///e:/mapper.xml"/> -->
+		
+		<!-- 使用下面的注册方式需要满足以下三点要求：
+			1) 映射文件要与Dao接口在同一个包下
+			2) 映射文件名要与Dao接口的简单类名相同
+			3) 映射文件的<mapper/>标签的namespace属性值为Dao接口的全限定性类名
+			
+			满足以上三个条件，那么这里的class属性值就可以填写Dao接口的全限定性类名
+		 -->
+		<mapper class="com.abc.dao.IStudentDao"/>
+		
+		
+		<!-- 使用下面的注册方式需要满足以下四点要求：
+			1) 映射文件要与Dao接口在同一个包下
+			2) 映射文件名要与Dao接口的简单类名相同
+			3) 映射文件的<mapper/>标签的namespace属性值为Dao接口的全限定性类名
+			4) 使用动态Mapper
+			
+			满足以上四个条件，那么这里的name属性值就可以填写Dao接口所在的包名
+		 -->
+		<!-- <package name="com.abc.dao"/> -->
+		
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
