@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+	<!-- 注册中央调度器，也称为中央控制器，或前端控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 指定SpringMVC配置文件的位置及名称 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		<!-- 应用启动时创建当前Servlet实例 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 
+			<url-pattern/>的值不能写为/*，不建议写为/，建议写为扩展名方式，例如*.do
+			/*，表示拦截所有请求，其中包含所有动态资源请求（*.jsp），及所有静态资源请求（*.html、*.jpg、*.png、*.js、*.css。。。）
+			/，表示拦截所有请求。但其不会拦截*.jsp请求，但会拦截所有静态资源请求。
+			
+			有时，项目中要求客户端提交的请求格式为RESTFUL风格。
+		 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+</web-app>
