@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器映射器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/some/*.do" value="some"/>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 注册方法名解析器 -->
+	<bean id="myMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/some/xxx.do">doFirst</prop>
+				<prop key="/some/ooo.do">doSecond</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean id="some" class="com.abc.handlers.SomeHandler">
+		<property name="methodNameResolver" ref="myMethodNameResolver"/>
+	</bean>
+
+</beans>
