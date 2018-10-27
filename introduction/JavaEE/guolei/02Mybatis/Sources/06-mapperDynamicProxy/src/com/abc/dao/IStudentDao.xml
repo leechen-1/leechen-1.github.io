@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+	<insert id="insertStudent">
+		insert into student(name,age,score) values(#{name}, #{age}, #{score})
+	</insert>
+	
+	<insert id="insertStudentCatchId">
+		insert into student(name,age,score) values(#{name}, #{age}, #{score})
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+			<!-- select @@identity -->
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<!-- 当动态参数类型为基本数据类型或String时，#{}的作用仅仅是个占位符，其中填写什么内容都可以
+		 当动态参数类型为自定义类型的对象时，#{}中填写的是该对象的属性名
+	 -->
+	<delete id="deleteById">
+		delete from student where id=#{xxx}
+	</delete>
+	
+	<update id="updateStudent">
+		update student set name=#{name}, age=#{age}, score=#{score} where id=#{id}
+	</update>
+	
+	<!-- resultType与resultMap指的是查询出的每一条记录所要封闭的对象类型，并非查询的结果集类型 -->
+	<select id="selectAllStudent" resultType="Student">
+		select id,name,age,score from student
+	</select>
+	
+	<select id="selectStudentById" resultType="Student">
+		select id,name,age,score from student where id=#{ooo}
+	</select>
+	
+	<select id="selectStudentsByName" resultType="Student">
+		<!-- select * from student where name like '%张%' -->
+		select id,name,age,score from student where name like '%' #{jjj} '%'
+		<!-- select id,name,age,score from student where name like concat('%', #{jjj}, '%') -->
+		<!-- select id,name,age,score from student where name like '%${value}%' -->
+	</select>
+	
+	<select id="selectStudentsByCondition" resultType="Student">
+		select id,name,age,score from student where name like '%' #{name} '%' and  age &lt; #{age}
+	</select>
+	
+	<select id="selectStudentsByCondition2" resultType="Student">
+		<!-- select id,name,age,score from student where name like '%' #{cname} '%' and  age &lt; #{cage} -->
+		select id,name,age,score from student where name like '%' #{stu1.name} '%' and  age &lt; #{stu2.age}
+	</select>
+	
+	<select id="selectStudentsByCondition3" resultType="Student">
+		select id,name,age,score from student where name like '%' #{0} '%' and  age &lt; #{1}
+	</select>
+	
+	<!-- 总结
+		#{}中可写填写什么内容：
+		1）参数对象的属性
+		2）任意内容，参数对象为基本数据类型或String时，起占位符作用
+		3）map的key
+		4）map的key的属性，当map的key为对象时
+	 -->
+	
+	
+</mapper>
+
+
+
+
+
+
+
