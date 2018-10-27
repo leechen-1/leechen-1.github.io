@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		destroy-method指定的方法的执行需要满足两个条件：
+		1）当前Bean为单例，即其scope为singleton
+		2）该方法会在容器被关闭前执行
+	 -->
+
+	<bean id="someService" class="com.abc.ba07.SomeServiceImpl"
+		  init-method="afterInit" destroy-method="beforeDestroy"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

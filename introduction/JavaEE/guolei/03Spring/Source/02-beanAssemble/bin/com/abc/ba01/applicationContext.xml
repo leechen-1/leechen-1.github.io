@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 以下配置，相当于如下代码：
+		SomeServiceImpl someService = new SomeServiceImpl();
+		其底层是通过反射机制创建对象的：
+		Object someService = Class.forName("com.abc.ba01.SomeServiceImpl").newInstance();
+	 -->
+
+	<bean id="someService" class="com.abc.ba01.SomeServiceImpl"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

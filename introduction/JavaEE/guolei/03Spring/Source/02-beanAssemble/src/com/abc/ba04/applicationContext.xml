@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 
+		scope="prototype"，表示当前Bean为原型模式
+		scope="singleton"，表示当前Bean为单例模式，是默认的模式
+		scope的取值还可以是：request、session。
+	 -->
+	<bean id="someService" class="com.abc.ba04.SomeServiceImpl" scope="singleton"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
