@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.ICountryDao">
+
+	<!-- 多表连接查询 -->
+
+	<!-- 定义结果映射关系 -->
+	<resultMap type="Country" id="countryMap">
+		<id column="cid" property="cid"/>
+		<result column="cname" property="cname"/>
+		<!-- ofType解释为element of type ，元素类型 -->
+		<collection property="ministers" ofType="Minister">
+			<id column="mid" property="mid"/>
+			<result column="mname" property="mname"/>
+		</collection>
+	</resultMap>
+
+	<select id="selectCountryById" resultMap="countryMap">
+		select cid,cname,mid,mname
+		from country,minister
+		where cid=countryId and cid=#{xxx}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
