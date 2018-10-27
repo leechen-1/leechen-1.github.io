@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册目标对象 -->
+	<bean id="someService" class="com.abc.aop13.SomeServiceImpl"/>
+	<bean id="someService2" class="com.abc.aop13.SomeServiceImpl"/>
+	
+	<!-- 注册切面：通知 -->
+	<bean id="myAdvice" class="com.abc.aop13.MyMethodBeforeAdvice"/>
+	
+	
+	<!-- 注册切面：切入点顾问 -->
+	<bean id="pointcutAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<property name="mappedNames" value="*i*"/>
+	</bean>
+	
+	<!-- 
+		ProxyFactoryBean生成代理存在的问题：
+			1）一次只能为一个目标对象生成一个代理对象。若要为多个目标对象生成代理对象，则需要配置多个ProxyFactoryBean标签，
+				使配置文件变得臃肿，不便于管理
+			2）测试类真正想访问的是目标对象，而真正能够访问的却是代理对象。不符合正常的逻辑。
+	 -->
+	 
+	 <!-- 注册自动代理生成器
+	 	其本质是一个Bean后处理器
+	  -->
+	 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

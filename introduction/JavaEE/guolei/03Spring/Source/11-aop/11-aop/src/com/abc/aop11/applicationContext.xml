@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册目标对象 -->
+	<bean id="someService" class="com.abc.aop11.SomeServiceImpl"/>
+	
+	<!-- 注册切面：通知 -->
+	<bean id="myAdvice" class="com.abc.aop11.MyMethodBeforeAdvice"/>
+	
+	
+	<!-- 注册切面：切入点顾问 -->
+	<bean id="pointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<!-- 
+			这里匹配的对象是：全限定性方法名
+			正则表达式运行符：
+			.号：表示一个字符
+			*号：表示其前面的内容可以出现0次或多次
+			+号：表示其前面的内容可以出现1次或多次
+		 -->
+		<!-- <property name="pattern" value=".*doFirst"/> -->
+		<!-- <property name="pattern" value=".*do.*"/> -->
+		<!-- <property name="patterns" value=".*F.*,.*T.*"/> -->
+		<!-- <property name="pattern" value=".*F.*|.*T.*"/> -->
+		<property name="pattern" value=".*S*"/>
+	</bean>
+	
+	<!-- 生成代理对象 -->
+	<bean id="someServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="someService"/>
+		<property name="interceptorNames" value="pointcutAdvisor"/>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

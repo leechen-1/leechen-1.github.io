@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册目标对象 -->
+	<bean id="someService" class="com.abc.aop10.SomeServiceImpl"/>
+	
+	<!-- 注册切面：通知 -->
+	<bean id="myAdvice" class="com.abc.aop10.MyMethodBeforeAdvice"/>
+	
+	
+	<!-- 注册切面：切入点顾问 -->
+	<bean id="pointcutAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<!-- 
+			比较的对象是：简单方法名
+		 -->
+		<!-- <property name="mappedName" value="doFirst"/> -->
+		<!-- <property name="mappedNames" value="doFirst,doSecond"/> -->
+		<!-- <property name="mappedNames" value="do*"/> -->
+		<property name="mappedNames" value="*i*"/>
+	</bean>
+	
+	<!-- 生成代理对象 -->
+	<bean id="someServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="someService"/>
+		<property name="interceptorNames" value="pointcutAdvisor"/>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

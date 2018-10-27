@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册目标对象 -->
+	<bean id="someService" class="com.abc.aop14.SomeServiceImpl"/>
+	<bean id="someService2" class="com.abc.aop14.SomeServiceImpl"/>
+	
+	<!-- 注册切面：通知 -->
+	<bean id="myAdvice" class="com.abc.aop14.MyMethodBeforeAdvice"/>
+	
+	
+	<!-- 注册切面：切入点顾问 -->
+	<bean id="pointcutAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<property name="mappedNames" value="doFirst"/>
+	</bean>
+	<bean id="pointcutAdvisor2" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<property name="mappedNames" value="doSecond"/>
+	</bean>
+	
+	<!-- 
+		DefaultAdvisorAutoProxyCreator生成代理存在的问题：
+			1）不能选择目标对象。所有目标对象均会被织入切面。
+			2）不能选择切面类型。切面只能是顾问。
+			3）不能选择要织入的顾问。会将所有顾问作为切面织入到切入点方法中。
+	 -->
+	 
+	 <!-- 注册自动代理生成器  -->
+	 <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	 	<property name="beanNames" value="someService"/>
+	 	<!-- <property name="interceptorNames" value="pointcutAdvisor"/> -->
+	 	<property name="interceptorNames" value="myAdvice"/>
+	 </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

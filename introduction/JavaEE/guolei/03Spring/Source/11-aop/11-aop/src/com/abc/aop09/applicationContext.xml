@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册目标对象 -->
+	<bean id="someService" class="com.abc.aop09.SomeServiceImpl"/>
+	<bean id="otherService" class="com.abc.aop09.OtherServiceImpl"/>
+	
+	<!-- 注册切面：通知 -->
+	<bean id="myAdvice" class="com.abc.aop09.MyMethodBeforeAdvice"/>
+	
+	<!-- 注册类过滤器与方法匹配器 -->
+	<bean id="myClassFilter" class="com.abc.aop09.MyClassFilter"/>
+	<bean id="myMethodMatcher" class="com.abc.aop09.MyMethodMatcher"/>
+	
+	<!-- 注册切入点 -->
+	<bean id="myPointcut" class="com.abc.aop09.MyPointcut">
+		<property name="classFilter" ref="myClassFilter"/>
+		<property name="methodMatcher" ref="myMethodMatcher"/>
+	</bean>
+	
+	<!-- 注册切面：切入点顾问 -->
+	<bean id="pointcutAdvisor" class="com.abc.aop09.MyPointcutAdvisor">
+		<property name="advice" ref="myAdvice"/>
+		<property name="pointcut" ref="myPointcut"/>
+	</bean>
+	
+	<!-- 生成代理对象 -->
+	<bean id="someServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="someService"/>
+		<property name="interceptorNames" value="pointcutAdvisor"/>
+	</bean>
+	
+	<bean id="otherServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="otherService"/>
+		<property name="interceptorNames" value="pointcutAdvisor"/>
+	</bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
