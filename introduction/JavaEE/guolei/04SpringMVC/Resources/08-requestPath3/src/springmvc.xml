@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器
+		id="/some.do"，这个路径是后台路径，后台路径的参照路径是当前Web应用的根 http://localhost:8888/08-requestPath3
+		根据 绝对路径 = 参照路径 + 相对路径 转换关系，转换为的资源定义路径为：
+		http://localhost:8888/08-requestPath3/test/some.do
+		即，若客户端要访问SomeHandler这个资源，必须要提交的资源请求路径为以上路径。
+	 -->
+	<bean id="/test/some.do" class="com.abc.handlers.SomeHandler"/>
+
+</beans>
