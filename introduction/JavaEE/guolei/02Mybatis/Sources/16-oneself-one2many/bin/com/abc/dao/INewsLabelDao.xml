@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.INewsLabelDao">
+	
+	<!-- 多表连接查询 -->
+
+	<resultMap type="NewsLabel" id="newslabelMap">
+		<id column="ptid" property="id"/>
+		<result column="ptname" property="name"/>
+		<collection property="children" ofType="NewsLabel">
+			<id column="cdid" property="id"/>
+			<result column="cdname" property="name"/>
+		</collection>
+	</resultMap>
+
+	<select id="selectNewsLabelById" resultMap="newslabelMap">
+		select pt.id ptid,pt.name ptname,cd.id cdid,cd.name cdname
+		from newslabel pt,newslabel cd
+		where pt.id=cd.pid and pt.id=#{xxx}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
