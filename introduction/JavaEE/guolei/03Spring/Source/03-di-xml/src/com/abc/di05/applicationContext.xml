@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="aynu" class="com.abc.di05.School">
+		<property name="sname" value="安师"/>
+	</bean>
+	<bean id="tsinghua" class="com.abc.di05.School">
+		<property name="sname" value="清华"/>
+	</bean>
+
+	<bean id="some" class="com.abc.di05.Some">
+		<property name="names">
+			<array>
+				<value>张三</value>
+				<value>李四</value>
+			</array>
+		</property>
+		
+		<property name="myList">
+			<list>
+				<value>河南</value>
+				<value>安阳</value>
+			</list>
+		</property>
+		
+		<property name="schools">
+			<list>
+				<ref bean="aynu"/>
+				<ref bean="tsinghua"/>
+			</list>
+		</property>
+		
+		<property name="mySet">
+			<set>
+				<value>本科</value>
+				<value>硕士</value>
+			</set>
+		</property>
+		
+		<property name="myMap">
+			<map>
+				<entry key="mobile" value="1234567"/>
+				<entry key="QQ" value="7654321"/>
+			</map>
+		</property>
+		
+		<property name="myPros">
+			<props>
+				<prop key="email">7654321@qq.com</prop>
+				<prop key="address">开发区弦歌大道</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

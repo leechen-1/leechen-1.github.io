@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 同类抽象Bean -->
+	<bean id="base" class="com.abc.di11.Student" abstract="true">
+		<property name="school" value="安师"/>
+		<property name="department" value="软件学院"/>
+	</bean>
+	
+	<bean id="student" parent="base">
+		<property name="name" value="张三"/>
+		<property name="age" value="23"/>
+	</bean>
+	
+	<bean id="student2" parent="base">
+		<property name="name" value="李四"/>
+		<property name="age" value="24"/>
+	</bean>
+	
+	<bean id="student3" parent="base">
+		<property name="name" value="王五"/>
+		<property name="age" value="25"/>
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="xxx" class="com.abc.di08.School">
+		<property name="sname" value="aynu"/>
+	</bean>
+	
+	<bean id="jjj" class="com.abc.di08.MiddleSchool">
+		<property name="sname" value="安阳一中"/>
+		<property name="address" value="文明大道"/>
+	</bean>
+	
+	<!-- 
+	<bean id="ooo" class="com.abc.di08.School">
+		<property name="sname" value="tsinghua"/>
+	</bean>
+	 -->
+	<bean id="student" class="com.abc.di08.Student" autowire="byType">
+		<property name="name" value="张三"/>
+		<property name="age" value="23"/>
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

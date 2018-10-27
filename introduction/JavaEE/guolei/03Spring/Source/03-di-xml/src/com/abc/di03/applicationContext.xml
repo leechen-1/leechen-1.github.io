@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="mySchool" class="com.abc.di03.School" p:sname="aynu"/>
+
+	<bean id="student" class="com.abc.di03.Student" p:xxx="张三" p:jjj="23" p:school-ref="mySchool"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
