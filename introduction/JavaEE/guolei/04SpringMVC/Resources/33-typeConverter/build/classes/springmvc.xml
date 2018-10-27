@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 注册组件扫描器 -->
+	<context:component-scan base-package="com.abc.handlers" />
+
+	<!-- 注册类型转换器 -->
+	<bean id="typeConverter" class="com.abc.converters.CustomDateConverter" />
+
+	<!-- 生成转换服务Bean -->
+	<bean id="conversionServiceBean"
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters" ref="typeConverter" />
+	</bean>
+	
+	<!-- 注册MVC注解驱动 -->
+	<mvc:annotation-driven conversion-service="conversionServiceBean"/>
+	
+</beans>
