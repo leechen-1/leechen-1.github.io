@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+	
+	<select id="selectStudentsByIf" resultType="Student">
+		select id,name,age,score from student where 1=1
+		
+		<if test="name != null and name != ''">
+			and name like '%' #{name} '%'
+		</if>
+		<if test="age > 0">
+			and age &lt; #{age}
+		</if>
+		
+	</select>
+	
+	<select id="selectStudentsByWhere" resultType="Student">
+		select id,name,age,score from student
+		<where>
+			<if test="name != null and name != ''">
+				and name like '%' #{name} '%'
+			</if>
+			<if test="age > 0">
+				and age &lt; #{age}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 若查询条件中有name，无论有条件中有没有age，都只按照name查询；
+	只有当查询条件中只包含age时，才按照age查询；若没有任何的查询条件，则
+	不进行查询
+	 -->
+	<select id="selectStudentsByChoose" resultType="Student">
+		select id,name,age,score from student
+		
+		<where>
+			<choose>
+				<when test="name != null and name != ''">
+					and name like '%' #{name} '%'
+				</when>
+				<when test="age > 0">
+					and age &lt; #{age}
+				</when>
+				<otherwise>
+					and 1!=1
+				</otherwise>
+			</choose>
+		</where>
+		
+	</select>
+	
+	<select id="selectStudentsByForeachArray" resultType="Student">
+		<!-- select * from student where id in (1,5,7) -->
+		select id,name,age,score from student
+		<if test="array != null and array.length > 0">
+			 where id in 
+			<foreach collection="array" item="myid" open="(" close=")" separator=",">
+				#{myid}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectStudentsByForeachList" resultType="Student">
+		<!-- select * from student where id in (1,5,7) -->
+		select id,name,age,score from student
+		<if test="list != null and list.size > 0">
+			 where id in 
+			<foreach collection="list" item="myid" open="(" close=")" separator=",">
+				#{myid}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectStudentsByForeachList2" resultType="Student">
+		<!-- select * from student where id in (1,5,7) -->
+		select id,name,age,score from student
+		<if test="list != null and list.size > 0">
+			 where id in 
+			<foreach collection="list" item="mystu" open="(" close=")" separator=",">
+				#{mystu.id}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectStudentsByFragment" resultType="Student">
+		<!-- select * from student where id in (1,5,7) -->
+		select <include refid="fieldNames"/> from student
+		<if test="list != null and list.size > 0">
+			 where id in 
+			<foreach collection="list" item="mystu" open="(" close=")" separator=",">
+				#{mystu.id}
+			</foreach>
+		</if>
+	</select>
+	
+	<!-- 定义SQL片断 -->
+	<sql id="fieldNames">
+		id,name,age,score
+	</sql>
+	
+</mapper>
+
+
+
+
+
+
+
