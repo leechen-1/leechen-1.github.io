@@ -1,0 +1,5 @@
+[FATAL][2017-02-24 09:40:25] [com.abc.test.MyTest 10] fatal msg =========
+[ERROR][2017-02-24 09:40:25] [com.abc.test.MyTest 11] error msg =========
+[WARN ][2017-02-24 09:40:25] [com.abc.test.MyTest 12] warn msg ===========
+[INFO ][2017-02-24 09:40:25] [com.abc.test.MyTest 13] info msg ===========
+[DEBUG][2017-02-24 09:40:25] [com.abc.test.MyTest 14] debug msg =========
