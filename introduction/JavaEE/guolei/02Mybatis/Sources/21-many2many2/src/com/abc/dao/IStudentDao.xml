@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+
+	<!-- 多表单独查询 -->
+
+	<select id="selectCourseById" resultType="Course">
+		select cid,cname from course where cid=#{jjj}
+	</select>
+
+	<resultMap type="Middle" id="middleMap">
+		<id column="id" property="id"/>
+		<association property="course" 
+					 javaType="Course"
+					 select="selectCourseById"
+					 column="courseId"/>
+	</resultMap>
+
+	<select id="selectMiddleByStudent" resultMap="middleMap">
+		select id,courseId from middle where studentId=#{ooo}
+	</select>
+
+	<resultMap type="Student" id="studentMap">
+		<id column="sid" property="sid" />
+		<result column="sname" property="sname" />
+		<collection property="courses" 
+					ofType="Course"
+					select="selectMiddleByStudent"
+					column="sid"/>
+	</resultMap>
+
+	<select id="selectStudentById" resultMap="studentMap">
+		select sid,sname from student where sid=#{xxx}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
