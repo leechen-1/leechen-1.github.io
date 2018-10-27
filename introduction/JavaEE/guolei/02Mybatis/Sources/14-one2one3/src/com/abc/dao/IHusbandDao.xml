@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IHusbandDao">
+
+	<!-- 多表连接查询 -->
+
+	<!-- 定义结果映射关系 -->
+	<resultMap type="Husband" id="husbandMap">
+		<id column="hid" property="hid" />
+		<result column="hname" property="hname" />
+		<association property="wife" javaType="Wife">
+			<id column="wid" property="wid" />
+			<result column="wname" property="wname" />
+		</association>
+	</resultMap>
+
+	<select id="selectHusbandById" resultMap="husbandMap">
+		select hid,hname,wid,wname
+		from husband,wife
+		where wid=hid and hid=#{xxx}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
