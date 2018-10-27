@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器 -->
+	<bean id="/some.do" class="com.abc.handlers.SomeHandler"/>
+
+	<!-- 注册视图解析器
+		在不指定order属性的情况下，哪个视图解析器先注册，那么其优先级就高。
+		order属性可以用于设置视图解析器的优先级。其取值为非负整数，且数值越小，优先级越高。
+		不过，一般情况下，在设置了多个视图解析器的情况下，会再设置上InternalResourceViewResolver
+		视图解析器，且不为其指定order属性，也就是使其优先级最低。当其它视图解析器都无法解析某视图时，
+		会使用InternalResourceViewResolver来解析。
+	 -->
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location" value="classpath:views.xml"/>    <!-- jd -->
+		<property name="order" value="2"/>    
+	</bean>
+	<bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+		<property name="basenames" value="myviews"/>               <!-- taobao -->
+		<property name="order" value="0"/>    
+	</bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>	
+
+</beans>
