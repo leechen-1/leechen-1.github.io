@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.IStudentDao">
+	
+	<!-- 开启二级缓存 -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache">
+		<property name="maxElementsInMemory" value="1000"/>
+		<property name="timeToLiveSeconds" value="240"/>
+	</cache>
+
+	<insert id="insertStudent" flushCache="false">
+		insert into student(name,age,score) values(#{name}, #{age}, #{score})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from student where id=#{xxx}
+	</delete>
+	
+	<update id="updateStudent">
+		update student set name=#{name}, age=#{age}, score=#{score} where id=#{id}
+	</update>
+	
+	<select id="selectStudentById" resultType="Student" useCache="false">
+		select id,name,age,score from student where id=#{ooo}
+	</select>
+	
+	<select id="selectStudentById2" resultType="Student">
+		select id,name,age,score from student where id=#{ooo}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
