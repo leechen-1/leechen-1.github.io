@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器 -->
+	<bean id="/some.do" class="com.abc.handlers.SomeHandler"/>
+
+	<!-- 注册视图解析器
+		功能：将逻辑视图转换为了物理视图。就本例来说，
+		逻辑视图：welcome
+		物理视图：/WEB-INF/jsp/welcome.jsp
+		其实，这个视图解析器就做了一个机械的字符串拼接。
+	 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+</beans>
