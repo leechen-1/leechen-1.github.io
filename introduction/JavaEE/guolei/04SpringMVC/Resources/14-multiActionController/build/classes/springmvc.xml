@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 注册处理器映射器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/some/*.do" value="some"/>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 内部使用InternalPathMethodNameResolver作为方法名解析器，而该解析器
+		会将方法名作为内部路径的一部分出现，具体来说，作为请求路径的资源名称出现。
+	 -->
+	<bean id="some" class="com.abc.handlers.SomeHandler"/>
+
+</beans>
