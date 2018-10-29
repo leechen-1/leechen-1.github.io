@@ -1,0 +1,93 @@
+<!DOCTYPE html><head> <meta http-equiv='Content-Type' content='text/html;charset=utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'><title></title><style>a {color: #607fa6;text-decoration:none;word-wrap:break-word;word-break:break-all;}.rich_media_title{padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid #e7e7eb;}.rich_media_meta{display:inline-block;vertical-align:middle;margin-right:8px;margin-bottom:10px;font-size:16px;}.rich_media_meta_text{color:#8c8c8c;}.rich_media_meta_list em {font-style: normal;}@media screen and (max-width:768px){.rich_media{position: relative;padding: 20px 15px 15px;background-color: #fff;}}.rich_media_content * {max-width: 100%!important;box-sizing: border-box!important;-webkit-box-sizing: border-box!important;word-wrap: break-word!important;}a.rich_media_meta_nickname{display: none;}@media screen and (min-width:1025px){.rich_media{position:relative;}a.rich_media_meta_nickname{display:inline-block!important;}span.rich_media_meta_nickname {display: none!important;}.rich_media {width:740px;margin-left:auto;margin-right:auto;}}a.fwjm{display: block;font-size: 12px;color: #ececec;}</style></head><body><div id='js_article' class='rich_media'><div><a href='https://mp.weixin.qq.com/s?__biz=MzUzODQ0MDY2Nw==&mid=2247483767&idx=1&sn=04323e2b4a97e1c6709e8d6581b259d6&chksm=fad6e7c3cda16ed5e50429b039c9a91fe18bdbd2d74cab04f7eb979a6971ee1f2842e84b1718&mpshare=1&scene=24&srcid=1024iupA1h8y2lkKsNUmphBI#rd' target='_blank'>https://mp.weixin.qq.com/s?__biz=MzUzODQ0MDY2Nw==&mid=2247483767&idx=1&sn=04323e2b4a97e1c6709e8d6581b259d6&chksm=fad6e7c3cda16ed5e50429b039c9a91fe18bdbd2d74cab04f7eb979a6971ee1f2842e84b1718&mpshare=1&scene=24&srcid=1024iupA1h8y2lkKsNUmphBI#rd</a><a href='https://www.52pojie.cn' class='fwjm' target='_blank'>提供的爬取软件来源于：52pojie.cn@夜泉  免费使用</a></div><div id="img-content">
+
+                
+                <h2 class="rich_media_title" id="activity-name">
+                    
+                    
+                    jvm堆内存溢出后，其他线程是否可继续工作
+
+                                                                                </h2>
+                <div id="meta_content" class="rich_media_meta_list">
+                                                            <span id="copyright_logo" class="rich_media_meta rich_media_meta_text meta_tag_text">原创：</span>
+                                                            <span class="rich_media_meta rich_media_meta_text">
+                                                半亩方田
+                                            </span>
+                                        
+                                        <span class="rich_media_meta rich_media_meta_nickname" id="profileBt">
+                      <a href="javascript:void(0);" id="js_name">
+                        Java杂谈                      </a>
+                      <div id="js_profile_qrcode" class="profile_container" style="display:none;">
+                          <div class="profile_inner">
+                              <strong class="profile_nickname">Java杂谈</strong>
+                              <img class="profile_avatar" id="js_profile_qrcode_img" src="" alt="">
+
+                              <p class="profile_meta">
+                              <label class="profile_meta_label">微信号</label>
+                              <span class="profile_meta_value"></span>
+                              </p>
+
+                              <p class="profile_meta">
+                              <label class="profile_meta_label">功能介绍</label>
+                              <span class="profile_meta_value">学习分享</span>
+                              </p>
+                              
+                          </div>
+                          <span class="profile_arrow_wrp" id="js_profile_arrow_wrp">
+                              <i class="profile_arrow arrow_out"></i>
+                              <i class="profile_arrow arrow_in"></i>
+                          </span>
+                      </div>
+                    </span>
+
+
+                    <em id="publish_time" class="rich_media_meta rich_media_meta_text"></em>
+
+
+
+
+
+                </div>
+                
+                
+                
+                
+                                                
+                                                                
+                                
+                
+                <div class="rich_media_content " id="js_content">
+                    
+
+                    
+
+                    
+                    
+                    <p><strong><span style="font-size: 20px;">背景</span></strong></p><hr  /><p><span style="font-size: 14px;">最近网上出现一个美团面试题：“一个线程OOM后，其他线程还能运行吗？”。我看网上出现了很多不靠谱的答案。这道题其实很有难度，涉及的知识点有jvm内存分配、作用域、gc等，不是简单的是与否的问题。</span></p><p><span style="font-size: 14px;">由于题目中给出的OOM，java中OOM又分很多类型；比如：堆溢出（“java.lang.OutOfMemoryError: Java heap space”）、永久带溢出（“java.lang.OutOfMemoryError:Permgen space”）、不能创建线程（“java.lang.OutOfMemoryError:Unable to create new native thread”）等很多种情况。</span></p><p><span style="font-size: 14px;">本文主要是分析<span style="font-size: 14px;">堆溢出对应用带来的影响。</span></span></p><p><span style="font-size: 20px;"><strong>直接实验验证</strong></span></p><hr  /><p><img class="" data-ratio="1.0353200883002207" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOMEmneuFzPBUGypmG7mKYj8YB11HzMUvZDcudLciaKlrwtu6UTFbnmHA.png" data-type="png" data-w="906" style="text-align: center;"  /><br  /></p><p><span style="font-size: 14px;">日志输入：<br  /></span></p><p style="text-align: center;"><img class="" data-ratio="0.23843416370106763" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOMzMqRW8LskwD6LyMQujIVKApgYKxf7Ticia8hiaqPFS5uwicfiaXgPoiasFQ.png" data-type="png" data-w="1124" style=""  /></p><p style="text-align: center;"><img class="" data-ratio="0.6747967479674797" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOssibGD3SzIicsnCAiayBia4jbaoqcPUMSlxtqg1S5W6sNmPAz2fUE7OpRw.png" data-type="png" data-w="492" style="text-align: center;white-space: normal;"  /></p><p style="text-align: center;"><img class="" data-ratio="0.7688888888888888" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOuXgS2ONJbSvxsDbGda5QBEWqUNXb1OYZ0ALhANYSt8DfkT5shjiadfA.png" data-type="png" data-w="450" style="text-align: center;white-space: normal;"  /></p><p style="text-align: center;"><img class="" data-ratio="0.32558139534883723" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOy575JvfBL3wSzhKB0YmwbDMVDtD8y5fzcpnoUzNsxzQv1r8M6VjibDQ.png" data-type="png" data-w="430" style="text-align: center;white-space: normal;"  /></p><p><span style="font-size: 14px;">从日志可以看出在thead-0发生OOM之后，thread-1仍旧能够继续申请内存工作。使用jconsole监控发现，thread-0开始慢慢把heap压满，发生OOM之后神奇的事情发生了，heap基本上被清空了，通过查看<span style="font-size: 14px;">jconsole看到的线程信息，发现没有thead-0线程了。这就很明确了，因为thead-0没有捕获该异常，跳出了while循环，导致thead-0线程运行结束，该线程持有的对象也就能被释放了。</span></span></p><p><span style="font-size: 14px;">那如果thread-0发生了OOM，但是该线程仍旧存活并且持有这些对象会怎么样呢？</span></p><p style="text-align: center;"><img class="" data-ratio="0.9450867052023122" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOTRo55iaQQNflnue00yRWrYJWCic8E03318zwEWfkuRU9qDFUBiaBnNL6A.png" data-type="png" data-w="1384" style=""  /></p><p><span style="font-size: 14px;">在线程thread-0我们捕获了该ERROR，然后让该线程暂停（不要让他结束，不然又像上面那样了）输出日志如下：</span></p><p style="text-align: center;"><img class="" data-ratio="0.21631205673758866" data-s="300,640" src="images/PxbsyCwaqiauwuGJEZTrAeLJ5hpHDnMqOOo7vWDK5eSR09kjjiaAhXoMASxt9Q2ibNZ26MyeNRelDGqTnZaY0sNDQ.png" data-type="png" data-w="1128" style=""  /></p><p style="text-align: left;"><span style="font-size: 14px;">在thread-0发生OOM之后，thread-1在申请内存也就发生了OOM，这个很容易理解的。</span></p><p style="white-space: normal;"><strong><span style="font-size: 20px;">原理分析</span></strong><br  /></p><hr style="white-space: normal;"  /><p style="white-space: normal;"><span style="font-size: 14px;">我们知道java对象基本上都是在堆上分配（有特殊情况下，不在我们讨论的范围内）。小对象都是直接在Eden区域中分配。如果此时内存不够，就会发生young gc，如果释放之后还是内存不够，此时jvm会进行full gc。如果发生full gc之后内存还是不够，此时就会抛出“java.lang.OutOfMemoryError: Java heap space”。大对象jvm会直接在old 区域中申请，但是和小对象分配的原理类似。</span></p><p style="white-space: normal;"><span style="font-size: 14px;">一般情况下，java对象内存分配跟线程无关（TLAB例外），能够申请成功至于当前只和当前heap空余空间有关。</span></p><p style="white-space: normal;"><span style="font-size: 14px;">清楚了内存分配原理之后，我们就可以以此为基础来分析各种情况。比如：在MyThread0中bytesList放在try中，代码如下：</span></p><p style="text-align: center;"><img class="" data-ratio="0.4546762589928058" data-s="300,640" src="images/PxbsyCwaqiavAxvKPQvttZOlu2uvMYOcwDRZVnvJSde60ibTTmFfibItYnYjHs4XTw3A4CYHuYz5VD0Xzr0UwAc0Q.png" data-type="png" data-w="1390" style=""  /></p><p style="text-align: center;"><br  /></p><p style="text-align: left;"><span style="font-size: 14px;">MyThread0发生OOM之后，bytesList其实就不属于存活对象，gc的时候就被释放了。</span><br  /></p><p style="text-align: left;"><span style="font-size: 14px;">再比如发生OOM捕获该异常之后，因为日志输入的string需要占用heap空间，也可能导致<span style="font-size: 14px;">MyThread0再次发生OOM，<span style="font-size: 14px;">MyThread0线程终结。</span></span></span></p><p style="text-align: center;"><img class="" data-ratio="0.3893229166666667" data-s="300,640" src="images/PxbsyCwaqiavAxvKPQvttZOlu2uvMYOcwTXjYQV8Rm9Rm23II457HY0Nrv96h6m5LuhahVh4wR7vjG7KrFUDsjQ.png" data-type="png" data-w="1536" style=""  /></p><p style="text-align: left;"><span style="font-size: 14px;">再比如<span style="font-size: 14px;">MyThread0中一次性申请的内存太大，比如超过heap大小；其他申请小内存的线程肯定不会受到影响。</span></span></p><p style="text-align: left;"><strong><span style="font-size: 20px;">总结</span></strong></p><hr  /><p style="text-align: left;"><span style="font-size: 14px;">发生OOM之后会不会影响其他线程正常工作需要具体的场景分析。但是就一般情况下，发生OOM的线程都会终结（除非代码写的太烂），该线程持有的对象占用的heap都会被gc了，释放内存。</span></p><p style="text-align: left;"><span style="font-size: 14px;">因为发生OOM之前要进行gc，就算其他线程能够正常工作，也会因为频繁gc产生较大的影响。</span></p><p style="text-align: center;"><br  /></p>
+                </div>
+                
+
+                
+                <div class="ct_mpda_wrp" id="js_sponsor_ad_area" style="display:none;"></div>
+
+                
+                                <div class="reward_area tc reward_area_primary" id="js_preview_reward_author" style="display:none;">
+                    <div class="reward-avatar" style="display: none;" id="js_preview_reward_author_avatar">
+                        <img src="" alt="" id="js_preview_reward_author_head">
+                    </div>
+                    
+                                        <div class="reward-author" id="js_preview_reward_author_name">半亩方田</div>
+                                        <p class="reward_tips" id="js_preview_reward_author_wording" style="display:none;"></p>
+                    <p>
+                        <a class="reward_button" id='js_preview_reward_author_link' href="##"><span id="js_preview_reward_link_text">赞赏</span></a>
+                    </p>
+                </div>
+
+                <div class="reward_qrcode_area reward_area tc" id="js_preview_reward_qrcode" style="display:none;">
+                    <p class="tips_global">长按二维码向我转账</p>
+                    <p id="js_preview_reward_ios_wording" class="reward_tips" style="display:none;"></p>
+                    <span class="reward_qrcode_img_wrp"><img class="reward_qrcode_img" src="res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/pic/appmsg/pic_reward_qrcode.2x3534dd.png"></span>
+                    <p class="tips_global">受苹果公司新规定影响，微信 iOS 版的赞赏功能被关闭，可通过二维码转账支持公众号。</p>
+                </div>
+                                
+                
+                            </div></div></body>
