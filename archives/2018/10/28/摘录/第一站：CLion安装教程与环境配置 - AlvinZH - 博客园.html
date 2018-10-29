@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/AlvinZH/p/6751936.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="never">
+<title>第一站：CLion安装教程与环境配置 - AlvinZH - 博客园</title>
+<meta property="og:description" content="原文来自：http://www.sunmey.cn/thread-129-1-1.html 本人：找了很久才找到的CLion安装教程与环境配置，这里分享给大家~ 这里要说明的一点是CLion是要钱的，">
+<link type="text/css" rel="stylesheet" href="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/bundle-CodingLife.css">
+<link type="text/css" rel="stylesheet" href="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/350675.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/AlvinZH/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/AlvinZH/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/AlvinZH/wlwmanifest.xml">
+<script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/f.txt"></script><script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/amp4ads-host-v0.js.download"></script><script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/pubads_impl_rendering_266.js.download"></script><script async="" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/analytics.js.download"></script><script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/jquery-2.2.0.min.js.download"></script>
+<script type="text/javascript">var currentBlogApp = 'AlvinZH', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'blogpost-body', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+            'HTML-CSS': { linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/MathJax.js.download"></script>
+<script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/blog-common.js.download" type="text/javascript"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="preload" href="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/f(1).txt" as="script"><script type="text/javascript" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/f(1).txt"></script><script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/pubads_impl_266.js.download" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-30/html/container.html"></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--PageBeginHtml Block Begin-->
+<!-- 这个是fork me the github -->
+
+<!-- <a href="https://github.com/Pacsiy" target="black"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a> -->
+
+<!-- 这个是打赏功能 -->
+
+<script>
+window.tctipConfig = {
+        staticPrefix:   "http://static.tctip.com",
+        buttonImageId:  1,
+        buttonTip:  "dashang",
+        list:{
+            alipay: {qrimg: "https://files.cnblogs.com/files/AlvinZH/zhifubao.bmp"},
+            weixin:{qrimg: "https://files.cnblogs.com/files/AlvinZH/weixin.bmp"},
+        }
+};
+</script>
+<script src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/tctip.min.js.download"></script>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/AlvinZH/"><img id="blogLogo" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/AlvinZH/">AlvinZH</a></h1>
+<h2>有多少事情，是你我都不知道的呢？</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/AlvinZH/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/AlvinZH">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/AlvinZH/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/AlvinZH/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 171&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 6</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/AlvinZH/p/6751936.html">第一站：CLion安装教程与环境配置</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>原文来自：<a href="https://www.cnblogs.com/AlvinZH/p/%20%20%20%20%E6%B3%A8%E6%84%8F%EF%BC%9A%E6%8C%89%E7%85%A7%E4%B8%8A%E8%BF%B0%E6%96%B9%E6%B3%95%EF%BC%8CClion%E7%9A%84%E7%9B%B8%E5%BA%94%E7%AA%97%E5%8F%A3%E9%9C%80%E8%A6%81%E4%BF%9D%E7%95%99%EF%BC%8C%E5%BD%93%E7%84%B6%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%85%88%E5%AE%89%E8%A3%85MinGW%E6%8F%92%E4%BB%B6%E5%90%8E%EF%BC%8C%E5%86%8D%E5%AE%89%E8%A3%85Clion%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%E3%80%82%20%20%20%20%E5%8E%9F%E6%96%87%E5%9C%B0%E5%9D%80%EF%BC%9Ahttp://www.sunmey.cn/thread-129-1-1.html" target="_blank">http://www.sunmey.cn/thread-129-1-1.html</a></p>
+<p><img src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/1152056-20170423104917632-1348379072.png" alt="" width="568" height="270"></p>
+<p>&nbsp;</p>
+<p>本人：找了很久才找到的CLion安装教程与环境配置，这里分享给大家~</p>
+<p>这里要说明的一点是CLion是要钱的，但是可以以学生名义获取半年左右的免费试用期，听说用完还可以再次认证，这我就不知道了。</p>
+<p>&nbsp;</p>
+<p>1.Clion简介：</p>
+<p><strong>产品概述：</strong></p>
+<p>CLion 是一款专为开发C及C++所设计的跨平台IDE。它是以IntelliJ为基础设计的，包含了许多智能功能来提高开发人员的生产力。这种强大的IDE帮助 开发人员在Linux、OS X和Windows上来开发C/C++，同时它还使用智能编辑器来提高代码质量、自动代码重构并且深度整合CMake编译系统，从而提高开发人员的工作效 率。</p>
+<p><strong>主要功能：</strong></p>
+<p>CLion是Jetbrains公司旗下新推出的一款专为开发C/C++所设计的跨平台IDE，它是以IntelliJ为基础设计的，同时还包含了许多智能功能来提高开发人员的生产力。</p>
+<p><strong>重要功能简介：</strong></p>
+<p>&nbsp;&nbsp;提供C及C++支持(包含C++11, libc++ 和Boost)，同时也支持JavaScript, XML, HTML 和CSS 。</p>
+<p>&nbsp;&nbsp;跨平台：您可在64-bit Linux，OS X 以及64-bit Windows上使用它。</p>
+<p>&nbsp;&nbsp;支持GCC、clang、MinGW、Cygwin 编译器以及 GDB 调试器。</p>
+<p>&nbsp;&nbsp;提供对CMake 支持：包含自动处理CMake changes和CMake targets，更新新创建的 C/C++ 档案及CMake Cache 编辑器。</p>
+<p>&nbsp;&nbsp;提供各式编码辅助：包含多行编辑功能、智能完成功能以及一键导航等。</p>
+<p>&nbsp;&nbsp;安全可信的自动代码重构功能。</p>
+<p>&nbsp;&nbsp;代码分析功能：监控代码品质并提供快速修复让开发人员得以及时就地解决问题。</p>
+<p>&nbsp;&nbsp;集成GDB 调试器及评估表达式(expressions)功能、STL 容器渲染器(renderers)、监视(watches)、内嵌变量视图等。</p>
+<p>&nbsp;&nbsp;与最热门的版本控制系统集成：Subversion、Git、GitHub,、Mercurial、CVS、Perforce及TFS。</p>
+<p>&nbsp;&nbsp;内建terminal 模式并可通过插件实现提供Vim-emulation 模式。</p>
+<p><strong>智能编辑器</strong></p>
+<p>&nbsp;&nbsp;CLion的智能编辑器能帮助开发人员更快地将代码补全，同时它还保持开发人员的代码格式化并符合配置编码的风格。使用此智能编辑器能快速选择代码块，还可以将代码重新排序。</p>
+<p><strong>代码生成和重构</strong></p>
+<p>&nbsp;&nbsp;在CLion中，开发人员可以使用之前定义发布的函数、变量、数据成员或者一个类，在IDE中会用红色来突出显示。同时CLion还提供了一套可靠的重构来帮助开发人员保持代码的质量，此代码重构适用于整个变化范围。</p>
+<p><strong>代码分析</strong></p>
+<p>&nbsp;&nbsp;CLion还提供了动态的代码分析，能不断地监控代码潜在的错误。如果在编辑器中找到了可以的代码，那么它会提出快速修正的方法来解决这个问题。</p>
+<p><strong>支持</strong><strong>CMake</strong></p>
+<p>&nbsp;&nbsp;CLion提供了对CMake的支持，这包括了自动处理CMake changes和CMake targets更新新创建的 C/C++ 档案及CMake Cache 编辑器。</p>
+<p>&nbsp;</p>
+<hr>
+<p>2.软件下载：</p>
+<p>&nbsp; &nbsp;&nbsp;&nbsp;Clion官方下载：<a href="http://www.jetbrains.com/clion/?fromFooter" target="_blank">http://www.jetbrains.com/clion/?fromFooter</a></p>
+<p>&nbsp; &nbsp;&nbsp;&nbsp;MinGW环境插件：<a href="http://sourceforge.net/projects/mingw/files/" target="_blank">http://sourceforge.net/projects/mingw/files/</a></p>
+<hr>
+<p>3.安装测试环境：Windows7 64bit</p>
+<p>&nbsp; &nbsp;软件版本号：1.2.1</p>
+<hr>
+<p>4.安装教程：</p>
+<p>（1）：Clion安装</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135113d5d5h33b3rjtr2cg.png" alt="" width="503"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135114hor0zhnvxdvnbukw.png" alt="" width="503"></p>
+<p>（2）首次运行，开始选择激活方式</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135115e2qppvxrxg9ppxpg.png" alt="" width="541"></p>
+<p>选择“License server”激活服务器激活，填写激活服务器地址“http://15.ieda.lanyus.com”,点击“OK”继续。更JetBrains产品多激活服务器[<a href="http://www.emangoo.pw/forum.php?mod=viewthread&amp;tid=114" rel="nofollow" target="_blank">点击此处</a>]</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135117qhhm5elhg0t59t9v.png" alt="" width="464"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135118nk0sl912zo2g02zd.png" alt="" width="464"></p>
+<p>（3）选择系统主题</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135123dc0gjuu6gaaadwac.png" alt="" width="750"></p>
+<p>出现下面界面，<strong>保留</strong>，稍后安装“MinGW”环境插件</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135127efm0r5zr0f0zu0z5.png" alt="" width="750"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135125mxybc2zyxmn1znlq.png" alt="" width="750"></p>
+<p>（4）安装“MinGW”</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135127oq38dcokwo3cg3cy.png" alt="" width="575"></p>
+<p>&nbsp;①双击打开.exe安装程序</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135128wal6lm7ohm7nves7.png" alt="" width="606"></p>
+<p>②我默认C盘安装</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135129aw96wvwvjiw1swtj.png" alt="" width="606"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135130d4436az5o46q0ln0.png" alt="" width="606"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135131swbmz7jwnhb6g9zo.png" alt="" width="606"></p>
+<p>③安装完成后进入MinGW主界面，选择要安装的插件。</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135132da20cc2aegm8nmas.png" alt="" width="750"></p>
+<p>④选择插件方法：左键单击，选择“Mark for Installation”</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135132q0g00i44d8bew8gd.png" alt="" width="223"></p>
+<p>⑤选择好插件后，单击“Installation”，选择“Apply changes”,开始下载安装相应插件。</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135133bovvso8v28uuu96d.png" alt="" width="735"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135134abqg4devrcqt3sds.png" alt="" width="566"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135134kdskdrs4sdk7ppvs.png" alt="" width="618"></p>
+<p>⑥完成后系统自检所下载的插件，单击“Close”关闭窗口</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135135sv2n8i5dfvassves.png" alt="" width="618"></p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135136j56s45vzsrvo5dmv.png" alt="" width="618"></p>
+<p>⑦关闭“MinGW”总窗口</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135137si9j9dfghwcfcr9d.png" alt="" width="750"></p>
+<p>（5）：Clion配置“MinGW”插件</p>
+<p>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 找到之前保留的Clion窗口，选择“MinGW”的安装目录（我安装到了C盘目录“C:\MinGW”）</p>
+<p><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135139xp3gdvz4n4dcqucn.png" alt="" width="750"></p>
+<p>&nbsp;<img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135141ky8dk5guuwmk5556.png" alt="" width="750"><br><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135143yka5vcvknvskvjsk.png" alt="" width="750"></p>
+<p>（6）最后，自动启动Clion<br><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135145zpr6rnk6avbrfrfq.png" alt="" width="500"><br><br>出现注册信息<br><img src="http://www.sunmey.cn/data/attachment/forum/201512/04/135146dtwtluew51uvwetl.png" alt="" width="666"></p>
+<p>&nbsp;</p>
+<div class="BlogContent"><hr>
+<p><br><strong>注意：</strong>按照上述方法，Clion的相应窗口需要保留，当然也可以先安装MinGW插件后，再安装Clion进行配置。<br>&nbsp;</p>
+
+
+
+</div>
+<div class="blog-opr">
+<div class="blog-copyright">原文地址：<a href="http://www.sunmey.cn/thread-129-1-1.html" target="_blank">http://www.sunmey.cn/thread-129-1-1.html</a></div>
+<div class="blog-copyright">&nbsp;</div>
+<div class="blog-copyright">
+<p>&nbsp;</p>
+<p>作者：&nbsp;<a href="http://www.cnblogs.com/AlvinZH/" target="_blank">AlvinZH</a></p>
+<p>出处：&nbsp;<a href="http://www.cnblogs.com/AlvinZH/" target="_blank">http://www.cnblogs.com/AlvinZH/</a></p>
+<p>本人Github：<a href="https://github.com/Pacsiy/JobDu" target="_blank">https://github.com/Pacsiy/JobDu</a></p>
+<p>本文版权归作者AlvinZH和博客园所有，欢迎转载和商用，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利.</p>
+</div>
+
+
+
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/AlvinZH/tag/CLion/">CLion</a>, <a href="https://www.cnblogs.com/AlvinZH/tag/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">安装教程</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6751936,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;23b3dc10-7727-e711-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/AlvinZH/" target="_blank"><img src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/20170423104335.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/AlvinZH/">AlvinZH</a><br>
+            <a href="http://home.cnblogs.com/u/AlvinZH/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/AlvinZH/followers">粉丝 - 36</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;23b3dc10-7727-e711-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6751936,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6751936,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/AlvinZH/p/6759724.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/AlvinZH/p/6759724.html" title="发布于2017-04-24 23:18">题目1000：计算a+b</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-04-23 11:14</span> <a href="https://www.cnblogs.com/AlvinZH/">AlvinZH</a> 阅读(<span id="post_view_count">21496</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6751936" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/AlvinZH/p/6751936.html#" onclick="AddToWz(6751936);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=350675,cb_entryId=6751936,cb_blogApp=currentBlogApp,cb_blogUserGuid='23b3dc10-7727-e711-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/4/23 11:14:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/AlvinZH/p/6751936.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/AlvinZH/p/6751936.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a116493,b2949399,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云&#39;)">【推荐】华为云11.11普惠季 血拼风暴 一促即发</a><br><a href="https://group.cnblogs.com/topic/80253.html" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-拼团&#39;)">【拼团】腾讯云服务器拼团活动又双叒叕来了！</a><br><a href="https://cloud.tencent.com/act/domainsales?fromSource=gwzcw.1351351.1351351.1351351" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-域名&#39;)">【推荐】腾讯云新注册用户域名抢购1元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/pro/redis?fromSource=gwzcw.1559146.1559146.1559146" target="_blank"><img width="300" height="250" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/24442-20181023123922818-1967472495.jpg" alt="腾讯云1023" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>系统推荐博文</b>:<br>·  <a href="https://www.cnblogs.com/conw/p/5938113.html" target="_blank">图解安装CLion编写程序并进行单元测试</a><br>·  <a href="https://www.cnblogs.com/zjutzz/p/4732890.html" target="_blank">使用CLion</a><br>·  <a href="https://www.cnblogs.com/dangerman/articles/6394514.html" target="_blank">Clion 使用简单总结</a><br>·  <a href="https://www.cnblogs.com/foreach-break/p/crack_clion_jar_and_debug_with_Serviceability_Agent.html" target="_blank">【逆向怎么玩】 动态调试一款牛逼C++ IDE实录</a><br>·  <a href="https://www.cnblogs.com/xueb/p/6438808.html" target="_blank">Deepin环境下配置openCV</a><br></div></div>
+<script async="async" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/gpt.js.download"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block" style="">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CPibh_uSqN4CFQgkYAodAlAEcQ">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-load-complete="true" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="https://kb.cnblogs.com/page/609730/" target="_blank">阿里云的这群疯子</a><br> ·  <a href="https://kb.cnblogs.com/page/606682/" target="_blank">为什么说 Java 程序员必须掌握 Spring Boot ？</a><br> ·  <a href="https://kb.cnblogs.com/page/606645/" target="_blank">在学习中，有一个比掌握知识更重要的能力</a><br> ·  <a href="https://kb.cnblogs.com/page/603663/" target="_blank">如何招到一个靠谱的程序员</a><br> ·  <a href="https://kb.cnblogs.com/page/573614/" target="_blank">一个故事看懂“区块链”</a><br></div>» <a href="https://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div>
+<img class="img_avatar" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/20170423104335(1).png" alt="Pacsiy的头像">
+
+<a target="blank" href="tencent://message/?uin=1329284394&amp;Site=www.ik38.com&amp;Menu=yes"><img border="0" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/pa" alt="有事您Q我"></a>
+</div><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/AlvinZH/">AlvinZH</a><br>园龄：<a href="https://home.cnblogs.com/u/AlvinZH/" title="入园时间：2017-04-23">1年6个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/AlvinZH/followers/">36</a><br>关注：<a href="https://home.cnblogs.com/u/AlvinZH/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;23b3dc10-7727-e711-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('23b3dc10-7727-e711-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/AlvinZH/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/AlvinZH/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/AlvinZH/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/AlvinZH/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/AlvinZH/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/AlvinZH/tag/%E5%8C%97%E8%88%AA/">北航</a>(62)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/%E7%AE%97%E6%B3%95/">算法</a>(62)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/BuaaCoding/">BuaaCoding</a>(57)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/Leetcode/">Leetcode</a>(45)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>(33)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/%E8%B4%AA%E5%BF%83/">贪心</a>(10)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>(8)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/Array/">Array</a>(8)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/sort/">sort</a>(5)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/String/">String</a>(5)</li><li><a href="https://www.cnblogs.com/AlvinZH/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/AlvinZH/category/1098236.html">BuaaCoding(63)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/AlvinZH/category/999822.html">C#(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/AlvinZH/category/994781.html">C/C++基础(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/AlvinZH/category/1174005.html">LeetCode(46)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/AlvinZH/category/1179330.html">Python(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/AlvinZH/category/1149332.html">编译原理(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/AlvinZH/category/990678.html">九度OJ(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/AlvinZH/category/1021677.html">考试资料(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/AlvinZH/category/1301048.html">面试(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/AlvinZH/category/1002374.html">数据库理论(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/AlvinZH/category/993446.html">算法基础(9)</a> </li>
+
+</ul>
+
+</div>
+
+</div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 AlvinZH
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script language="javascript" type="text/javascript">
+//生成目录索引列表
+function GenerateContentList()
+{
+    var jquery_h3_list = $('#cnblogs_post_body h2');//如果你的章节标题不是h3,只需要将这里的h3换掉即可
+    if(jquery_h3_list.length>0)
+    {
+        var content = '<a name="_labelTop"></a>';
+        content    += '<div id="navCategory">';
+        content    += '<p style="font-size:18px"><b>阅读目录</b></p>';
+        content    += '<ul>';
+        for(var i =0;i<jquery_h3_list.length;i++)
+        {
+            var go_to_top = '<div style="text-align: right"><a href="#_labelTop"></a><a name="_label' + i + '"></a></div>';
+            $(jquery_h3_list[i]).before(go_to_top);
+            var li_content = '<li><a href="#_label' + i + '">' + $(jquery_h3_list[i]).text() + '</a></li>';
+            content += li_content;
+        }
+        content    += '</ul>';
+        content    += '</div>';
+        if($('#cnblogs_post_body').length != 0 )
+        {
+            $($('#cnblogs_post_body')[0]).prepend(content);
+        }
+    }    
+}
+GenerateContentList();
+</script>
+<!--PageEndHtml Block End-->
+
+
+<iframe id="google_osd_static_frame_7735144706502" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./第一站：CLion安装教程与环境配置 - AlvinZH - 博客园_files/saved_resource(1).html"></iframe></body></html>
