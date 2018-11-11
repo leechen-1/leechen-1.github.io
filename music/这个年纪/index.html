@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>jplayer实现歌词同步的JS音乐播放器效果</title>
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.4">
+<meta name="MobileOptimized" content="240">
+
+<link href="css/blue.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jplayer.js"></script>
+<script type="text/javascript" src="js/lrc.js"></script>
+
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	outline:none;
+}
+ul, ol, dl {
+	list-style: none;
+}
+
+.music_box{margin:50px auto;width:422px;}
+.content {width: 402px;height:200px;overflow:hidden;padding:10px;background:#ccc;}
+#lrc_list{margin:10px auto;background:#ccc;}
+#lrc_list li{font:normal 14px/2.1 'microsoft yahei';text-align:center;}
+#lrc_list li.hover {color:red;font-weight:bold;}
+</style>
+
+<script>
+//<![CDATA[
+$(document).ready(function(){
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function (event) {
+			$(this).jPlayer("setMedia", {
+				mp3:"http://fs.open.kugou.com/8f5258494ff354ea7b9bc6cb1a3389bb/5be790b2/G039/M09/1B/0B/B5QEAFYqvSyAAfuiAEWQHEByoBc678.mp3" //mp3的播放地址
+			});
+		},
+		timeupdate: function(event) {
+			if(event.jPlayer.status.currentTime==0){
+				time = "";
+			}else {
+				time = event.jPlayer.status.currentTime;
+			}
+		},
+		play: function(event) {
+			//点击开始方法调用lrc。start歌词方法 返回时间time
+			$.lrc.start($('#lrc_content').val(), function() {
+				return time;
+			});
+		},
+		ended:function(event){
+			$("#lrc_list").removeAttr("style").html("<li>歌曲播放完毕！</li>");
+		},
+		swfPath: "/js",  		//存放jplayer.swf的决定路径
+		solution:"html, flash", //支持的页面
+		supplied: "mp3",		//支持的音频的格式
+		wmode: "window"
+	});
+});
+//]]>
+</script>
+</head>
+<body>
+<textarea id="lrc_content" name="textfield" cols="70" rows="10" style="display:none;"> 
+[00:00.00]齐一 - 这个年纪
+[00:02.02]词：齐一
+[00:02.86]曲：齐一
+[00:28.09]当我发现我已到了该成家的年纪
+[00:33.92]但我的女人呢
+[00:37.49]但我的女人呢
+[00:41.93]当我习惯把实话都变成了童话
+[00:47.80]那我的单纯呢
+[00:50.85]那我的单纯呢
+[00:54.86]这个年纪我已不再将就
+[00:58.39]有些事情无法强求
+[01:01.26]该来的总会来
+[01:03.37]该走的也无法挽留
+[01:08.80]青春慢慢从身边溜走
+[01:12.09]我开始变得怀旧
+[01:15.12]喝光了这杯酒
+[01:17.17]就再也无法回头
+[01:21.77]这个年纪的我们
+[01:23.92]爱情跟不上分开的节奏
+[01:28.51]这个年纪的我们
+[01:30.79]更珍惜难得的自由
+[01:35.44]这个年纪的我们
+[01:37.77]比起从前更容易感动
+[01:42.56]这个年纪的我们
+[01:44.56]徘徊在理想与现实之中
+[02:17.33]这个年纪我已不再将就
+[02:20.49]有些事情无法强求
+[02:23.47]该来的总会来
+[02:25.60]该走的也无法挽留
+[02:31.26]青春慢慢从身边溜走
+[02:34.29]我开始变得怀旧
+[02:37.31]喝光了这杯酒
+[02:39.41]就再也无法回头
+[02:44.24]这个年纪的我们
+[02:46.27]爱情跟不上分开的节奏
+[02:51.10]这个年纪的我们
+[02:53.12]更珍惜难得的自由
+[02:57.91]这个年纪的我们
+[02:59.89]比起从前更容易感动
+[03:04.82]这个年纪的我们
+[03:06.93]徘徊在理想与现实之中
+[03:12.46]不知不觉孤独不再可耻了
+[03:19.10]不知不觉爸爸的情绪变得脆弱了
+[03:26.30]不知不觉一把柴米油盐
+[03:29.34]也成为压力了
+[03:32.23]不知不觉我们也开始懂事了
+[04:07.65]呐呐呐呐呐 呐呐呐呐呐
+[04:13.91]呐呐呐呐呐 呐呐呐呐呐
+[04:21.10]呐呐呐呐呐 呐呐呐呐呐
+[04:27.74]呐呐呐呐呐 呐呐呐呐呐
+
+</textarea>
+<div class="music_box">
+<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+<div id="jp_container_1" class="jp-audio">
+  <div class="jp-type-single">
+    <div class="jp-gui jp-interface">
+      <ul class="jp-controls">
+        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+        <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+        <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+      </ul>
+      <div class="jp-progress">
+        <div class="jp-seek-bar">
+          <div class="jp-play-bar"></div>
+        </div>
+      </div>
+      <div class="jp-volume-bar">
+        <div class="jp-volume-bar-value"></div>
+      </div>
+      <div class="jp-time-holder">
+        <div class="jp-current-time"></div>
+        <div class="jp-duration"></div>
+        <ul class="jp-toggles">
+          <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+          <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jp-title">
+
+    </div>
+    <div class="jp-no-solution"> <span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>. </div>
+  </div>
+</div>
+<div class="content">
+    <ul id="lrc_list">
+    	<li>点击开始播放……</li>
+    </ul>
+</div>
+</div>
+<div style="text-align:center;">
+</div>
+</body>
+</html>
