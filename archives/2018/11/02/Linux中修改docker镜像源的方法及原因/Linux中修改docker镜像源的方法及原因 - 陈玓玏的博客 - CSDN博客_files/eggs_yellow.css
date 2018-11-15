@@ -1,0 +1,43 @@
+/*banner*/
+.banner{
+    background-image: url(//p3.ssl.qhimg.com/t01fd203e4152a0cf1e.png);
+}
+/*hammer*/
+.hammer .csl{
+    background-image: url(//p2.ssl.qhimg.com/t01cf9af0e267769589.png);
+}
+/*eggs左*/
+.eggs1{
+    background-image: url(//p1.ssl.qhimg.com/t01414dbadb55021648.png);
+}
+/*eggs中*/
+.eggs2{
+    background-image: url(//p5.ssl.qhimg.com/t01c0190114f13e0d3a.png);
+}
+/*eggs右*/
+.eggs3{
+    background-image: url(//p4.ssl.qhimg.com/t01f538e7e295404f0e.png);
+}
+/*碎光*/
+.l1{
+    background-image: url(//p5.ssl.qhimg.com/t01ff4700aa9478570e.png);
+}
+/*碎礼花*/
+.l2{
+    background-image: url(//p5.ssl.qhimg.com/t012ec84fe663420753.png);
+}
+/*eggs 破碎*/
+.eggsClick{
+    background-image: url(//p3.ssl.qhimg.com/t01ffa66da9d543ab1b.png)!important;
+}
+.broken{
+    background-image: url(//p3.ssl.qhimg.com/t01ffa66da9d543ab1b.png)!important;
+}
+/*剩余机会*/
+.lastTimes p{
+    background: #bc2b16;
+    color: #fff69b;
+}
+.lastTimes p span{
+    color: #fff;
+}
