@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://www.cnblogs.com/braveliuever/p/5832002.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>tar解压命令详细参数 - braveliu.site - 博客园</title>
+<meta property="og:description" content="" 转自破冰xshell.net"="" tar="" c:="" 建立压缩档案="" x：解压="" t：查看内容="" r：向压缩归档文件末尾追加文件="" u：更新原压缩包中的文件="" 这五个是独立的命令，压缩解压都要用到其中一个，可以和别的"="">
+<link type="text/css" rel="stylesheet" href="./tar解压命令详细参数 - braveliu.site - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./tar解压命令详细参数 - braveliu.site - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./tar解压命令详细参数 - braveliu.site - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/braveliuever/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/braveliuever/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/braveliuever/wlwmanifest.xml">
+<script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/f.txt"></script><script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/amp4ads-host-v0.js.下载"></script><script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/pubads_impl_rendering_274.js.下载"></script><script async="" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/analytics.js.下载"></script><script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'braveliuever', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./tar解压命令详细参数 - braveliu.site - 博客园_files/f(1).txt" as="script"><script type="text/javascript" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/f(1).txt"></script><script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/pubads_impl_274.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-31/html/container.html"></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/braveliuever/"><img id="blogLogo" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/braveliuever/">braveliu.site</a></h1>
+<h2>享受过程，看淡结果。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/braveliuever/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/braveliu.site">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/braveliuever/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/braveliuever/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 33&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/braveliuever/p/5832002.html">tar解压命令详细参数</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><p><a href="http://www.xshell.net/linux/tar.html">转自破冰xshell.net</a></p>
+<hr>
+<p>tar</p>
+<p>-c: 建立压缩档案<br>
+-x：解压<br>
+-t：查看内容<br>
+-r：向压缩归档文件末尾追加文件<br>
+-u：更新原压缩包中的文件</p>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<p>-z：有gzip属性的<br>
+-j：有bz2属性的<br>
+-Z：有compress属性的<br>
+-v：显示所有过程<br>
+-O：将文件解开到标准输出</p>
+<p>下面的参数-f是必须的<br>
+-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<pre><code class="hljs css"># <span class="hljs-selector-tag">tar</span> <span class="hljs-selector-tag">-cf</span> <span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span> *<span class="hljs-selector-class">.jpg</span> 
+这条命令是将所有<span class="hljs-selector-class">.jpg</span>的文件打成一个名为<span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span>的包。<span class="hljs-selector-tag">-c</span>是表示产生新的包，<span class="hljs-selector-tag">-f</span>指定包的文件名。
+# <span class="hljs-selector-tag">tar</span> <span class="hljs-selector-tag">-rf</span> <span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span> *<span class="hljs-selector-class">.gif</span> 
+这条命令是将所有<span class="hljs-selector-class">.gif</span>的文件增加到<span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span>的包里面去。<span class="hljs-selector-tag">-r</span>是表示增加文件的意思。
+# <span class="hljs-selector-tag">tar</span> <span class="hljs-selector-tag">-uf</span> <span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span> <span class="hljs-selector-tag">logo</span><span class="hljs-selector-class">.gif</span> 
+这条命令是更新原来<span class="hljs-selector-tag">tar</span>包<span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span>中<span class="hljs-selector-tag">logo</span><span class="hljs-selector-class">.gif</span>文件，<span class="hljs-selector-tag">-u</span>是表示更新文件的意思。
+# <span class="hljs-selector-tag">tar</span> <span class="hljs-selector-tag">-tf</span> <span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span> 
+这条命令是列出<span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span>包中所有文件，<span class="hljs-selector-tag">-t</span>是列出文件的意思
+# <span class="hljs-selector-tag">tar</span> <span class="hljs-selector-tag">-xf</span> <span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span> 
+这条命令是解出<span class="hljs-selector-tag">all</span><span class="hljs-selector-class">.tar</span>包中所有文件，<span class="hljs-selector-tag">-x</span>是解开的意思</code></pre>
+<p>压缩</p>
+<pre><code class="hljs awk">tar –cvf jpg.tar *.jpg <span class="hljs-regexp">//</span>将目录里所有jpg文件打包成tar.jpg
+
+tar –czf jpg.tar.gz *.jpg   <span class="hljs-regexp">//</span>将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz
+
+tar –cjf jpg.tar.bz2 *.jpg <span class="hljs-regexp">//</span>将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2
+
+tar –cZf jpg.tar.Z *.jpg   <span class="hljs-regexp">//</span>将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z
+
+rar a jpg.rar *.jpg <span class="hljs-regexp">//</span>rar格式的压缩，需要先下载rar <span class="hljs-keyword">for</span> linux
+
+zip jpg.zip *.jpg <span class="hljs-regexp">//</span>zip格式的压缩，需要先下载zip <span class="hljs-keyword">for</span> linux</code></pre>
+<p>解压</p>
+<pre><code class="hljs delphi">tar –xvf <span class="hljs-keyword">file</span>.tar <span class="hljs-comment">//解压 tar包</span>
+
+tar -xzvf <span class="hljs-keyword">file</span>.tar.gz <span class="hljs-comment">//解压tar.gz</span>
+
+tar -xjvf <span class="hljs-keyword">file</span>.tar.bz2   <span class="hljs-comment">//解压 tar.bz2</span>
+
+tar –xZvf <span class="hljs-keyword">file</span>.tar.Z   <span class="hljs-comment">//解压tar.Z</span>
+unrar e <span class="hljs-keyword">file</span>.rar <span class="hljs-comment">//解压rar</span>
+unzip <span class="hljs-keyword">file</span>.zip <span class="hljs-comment">//解压zip</span></code></pre>
+<p>总结</p>
+<p>1、<em>.tar 用 tar –xvf 解压<br>
+2、</em>.gz 用 gzip -d或者gunzip 解压<br>
+3、<em>.tar.gz和</em>.tgz 用 tar –xzf 解压<br>
+4、<em>.bz2 用 bzip2 -d或者用bunzip2 解压<br>
+5、</em>.tar.bz2用tar –xjf 解压<br>
+6、<em>.Z 用 uncompress 解压<br>
+7、</em>.tar.Z 用tar –xZf 解压<br>
+8、<em>.rar 用 unrar e解压<br>
+9、</em>.zip 用 unzip 解压</p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="https://www.cnblogs.com/braveliuever/category/876541.html" target="_blank">Linux</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5832002,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;eb7c2869-6963-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./tar解压命令详细参数 - braveliu.site - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./tar解压命令详细参数 - braveliu.site - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/braveliuever/" target="_blank"><img src="./tar解压命令详细参数 - braveliu.site - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/braveliuever/">braveliu.site</a><br>
+            <a href="http://home.cnblogs.com/u/braveliuever/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/braveliuever/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;eb7c2869-6963-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5832002,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5832002,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/braveliuever/p/5831966.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/braveliuever/p/5831966.html" title="发布于2016-09-02 01:00">Mac OS X 下Tar.gz方式安装MySQL</a><br><a href="https://www.cnblogs.com/braveliuever/p/5832986.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/braveliuever/p/5832986.html" title="发布于2016-09-02 12:04">程序即人生</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-09-02 01:28</span> <a href="https://www.cnblogs.com/braveliuever/">braveliu.site</a> 阅读(<span id="post_view_count">24557</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5832002" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/braveliuever/p/5832002.html#" onclick="AddToWz(5832002);return false;">收藏</a></div>
+	</div>
+	<script src="./tar解压命令详细参数 - braveliu.site - 博客园_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=299890,cb_entryId=5832002,cb_blogApp=currentBlogApp,cb_blogUserGuid='eb7c2869-6963-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/9/2 1:28:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/braveliuever/p/5832002.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/braveliuever/p/5832002.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="http://clickc.admaster.com.cn/c/a116493,b2949399,c1705,i0,m101,8a1,8b3,h" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-华为云&#39;)">【活动】华为云普惠季 1折秒杀 狂欢继续</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-SpreadJS&#39;)">【工具】SpreadJS纯前端表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/act/group/amd/index?fromSource=gwzcw.1608278.1608278.1608278" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【腾讯云】拼团福利，AMD云服务器8元/月</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/double11?fromSource=gwzcw.1608279.1608279.1608279" target="_blank"><img width="300" height="250" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/24442-20181105150013344-185546354.jpg" alt="腾讯云1105" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/MMSJ6/p/9056213.html" target="_blank" onclick="clickRecomItmem(9056213,&#39;EwnseTaTHkwXd+kUSqs/YeJeUefAt9GUxThPLcTUvyW9nCQr/fWkgyt3P2y5bAKOuJ0CJAFkVYwCoAlwJrghAyN8Xna7xxWMOdg4f67dt+HJEubcOMvwzm2B9fv7iVyTzNIRjAz0xUaDoRVauv8=&#39;)">Linux压缩解压</a><br>·  <a href="https://www.cnblogs.com/newcaoguo/p/5896975.html" target="_blank" onclick="clickRecomItmem(5896975,&#39;GIpCGqUjlQtz3wJbXNtAUgIFfUSz8OUzwtzMH3z6kSpivYnUguwLKb9M4vqyZoOJDzIuJL3/H1Uc1pmFiWC9EIjCqR/oNo50oxUHyMo3sVrdasknJicnYS6UG3V03f43IVx2H6xJf7HcJOIDZ6Q=&#39;)">linux中tar命令用法</a><br>·  <a href="https://www.cnblogs.com/xinbaby829/p/6631919.html" target="_blank" onclick="clickRecomItmem(6631919,&#39;LkHwHo1+Cj05gzAodtiCpU6NypOLaQnrYGgq7K7I9sTjQWkI1ReL4A0PLuOTreKZU6LwEtgUg+j5ZLb8vW2GEAjXKDPDI5cqKgdKiLbE0eSKgbRRHNTQX+U15If/IQI27Ng56HLP/19qldfqSJw=&#39;)">Linux  tar.gz 、zip、rar  解压 压缩命令</a><br>·  <a href="https://www.cnblogs.com/aksir/p/9066611.html" target="_blank" onclick="clickRecomItmem(9066611,&#39;kkjQySjNat4Yl62P6HIWkXy3pTKO7SvxsZtkG0e7LnoJcakqvE1J68rMe+gamgdX1t3PlytO2mWlwNpPhkkIQ80QqSFzNM8V21whwJcO/ttZ/mFWaiaxb2eM6jN6ZKM/14EJesop74AB8EdbbJU=&#39;)">linux下tar命令详解</a><br>·  <a href="https://www.cnblogs.com/UniqueColor/p/6486552.html" target="_blank" onclick="clickRecomItmem(6486552,&#39;+2Oxcm2KWO64U/w8dviOwrHSsTZkW7S++82e20jiBRoGv0X8mqgsNUY2uKCkgxxwDLiS2buzGZOUSiVH7G2FNZdEsk6e7Ju8gHlvPHv8r+CJbqPydlJhyDGAFrcGk1cB0N0Kot4h4nYWAWdm8Kw=&#39;)">Linux下的tar压缩解压缩命令详解</a><br></div></div>
+<script async="async" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CKKFg6q20t4CFZUcKgod7o0Aww">
+    <script>
+    if (new Date() >= new Date(2018, 9, 13)) {
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539008685004-0'); });
+    }
+    </script>
+    <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/612080/" target="_blank">任正非给华为敲警钟：已经有点泡沫化了！</a><br> ·  <a href="https://news.cnblogs.com/n/612114/" target="_blank">香烟里竟暗藏致命的放射源！真不是吓唬你</a><br> ·  <a href="https://news.cnblogs.com/n/612118/" target="_blank">苹果任命诺基亚前高管周德翰为印度市场负责人</a><br> ·  <a href="https://news.cnblogs.com/n/612073/" target="_blank">比P2P还危险，长租公寓爆仓，雷军最失落的“寓见”</a><br> ·  <a href="https://news.cnblogs.com/n/612095/" target="_blank">百度重回百度：陆奇出走 智能驾驶业务或被分拆</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/braveliuever/">braveliu.site</a><br>园龄：<a href="https://home.cnblogs.com/u/braveliuever/" title="入园时间：2016-08-16">2年2个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/braveliuever/followers/">1</a><br>关注：<a href="https://home.cnblogs.com/u/braveliuever/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;eb7c2869-6963-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('eb7c2869-6963-e611-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/10/01&#39;);return false;">&lt;</a></td><td align="center">2018年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalTodayDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/braveliuever/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/braveliuever/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/braveliuever/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/braveliuever/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/braveliuever/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/braveliuever/category/877167.html">C/C++(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/braveliuever/category/883773.html">Git/GitHub(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/braveliuever/category/900851.html">HTML/JS/CSS(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/braveliuever/category/886400.html">Java(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/braveliuever/category/876541.html">Linux(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/braveliuever/category/876540.html">MySQL(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/braveliuever/category/877515.html">Oralce(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/braveliuever/category/884220.html">开发工具(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/braveliuever/category/876684.html">乱弹琴(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/braveliuever/category/907389.html">网络编程(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/braveliuever/archive/2016/11.html">2016年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/braveliuever/archive/2016/10.html">2016年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="https://www.cnblogs.com/braveliuever/archive/2016/09.html">2016年9月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="https://www.cnblogs.com/braveliuever/archive/2016/08.html">2016年8月 (17)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/braveliuever/p/5915432.html#3979457">1. Re:如何让大脑保持高效工作</a></li>
+        <li class="recent_comment_body">你总结里的第三条说：记忆科学世界的基本原理和本质概念，不要去耗费精力记忆人为规定的规则，语法，公式等。那么我有一个问题：科学世界的基本原理 及本质概念，大都是人类经过长时间的总结而得出来的，其实，在问......</li>
+        <li class="recent_comment_author">--zmito</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/braveliuever/p/5915432.html#3979443">2. Re:如何让大脑保持高效工作</a></li>
+        <li class="recent_comment_body">牛！心灵的思考！</li>
+        <li class="recent_comment_author">--zmito</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/braveliuever/p/5832002.html">1. tar解压命令详细参数(24557)</a></li><li><a href="https://www.cnblogs.com/braveliuever/p/5808756.html">2. 再看Yii2框架中是如何使用命名空间的(1765)</a></li><li><a href="https://www.cnblogs.com/braveliuever/p/5915432.html">3. 如何让大脑保持高效工作(445)</a></li><li><a href="https://www.cnblogs.com/braveliuever/p/5836879.html">4. MFC程序运行提示找不到libfftwf.dll(322)</a></li><li><a href="https://www.cnblogs.com/braveliuever/p/5796962.html">5. STAR法则(151)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/braveliuever/p/5915432.html">1. 如何让大脑保持高效工作(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/braveliuever/p/5915432.html">1. 如何让大脑保持高效工作(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 braveliu.site
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+<iframe id="google_osd_static_frame_1111214629339" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./tar解压命令详细参数 - braveliu.site - 博客园_files/saved_resource(1).html"></iframe></body></html>
