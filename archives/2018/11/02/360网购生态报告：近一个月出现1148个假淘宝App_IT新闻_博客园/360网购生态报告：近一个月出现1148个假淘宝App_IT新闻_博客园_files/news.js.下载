@@ -1,0 +1,455 @@
+function getPassportHost() {
+    var hostname = location.hostname;
+    var suffix = hostname.substring(hostname.lastIndexOf("."));
+    return 'https://passport.cnblogs' + suffix;
+}
+
+function login() {
+    location.href = getPassportHost() + "/login.aspx?ReturnUrl=" + location.href;
+    return false;
+}
+
+function login2(anchor) {
+    var url = encodeURIComponent(location.href + "#" + anchor);
+    location.href = getPassportHost() + "/login.aspx?ReturnUrl=" + url;
+    return false;
+}
+
+function register() {
+    location.href = getPassportHost() + "/register.aspx?ReturnUrl=" + location.href;
+    return false;
+}
+
+function logout() {
+    if (confirm('确定要退出吗?')) {
+        location.href = getPassportHost() + "/logout.aspx?ReturnUrl=" + location.href;
+    }
+    return false;
+}
+
+var ajaxRequest = {};
+ajaxRequest.type = 'post';
+ajaxRequest.dataType = 'json';
+ajaxRequest.contentType = 'application/json; charset=utf-8';
+
+function getHostPostfix() {
+    var hostname = location.hostname;
+    hostname = hostname.substring(hostname.lastIndexOf("."), hostname.length);
+    return hostname;
+}
+
+function GetUserInfo() {
+    var prefixUrl = 'https://passport.cnblogs' + getHostPostfix();
+    $.ajax({
+        url: prefixUrl + '/user/LoginInfo',
+        dataType: 'jsonp',
+        success: function (data) {
+            $("#login_area").html(data);
+            var spacerUserId = parseInt($("#current_spaceId").html());
+            if (spacerUserId > 0) {
+                $.ajax({
+                    url: prefixUrl + '/user/NewMsgCount',
+                    data: 'spaceUserId=' + spacerUserId,
+                    dataType: 'jsonp',
+                    success: function (data) {
+                        if (data) {
+                            $("#msg_count").html('(' + data + ')').show();
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+}
+
+function Check(event) {
+    if (event.keyCode == 13) {
+        document.getElementById("btnSearch").focus();
+        return;
+    }
+}
+function zzk_go() {
+    var keystr = encodeURIComponent(document.getElementById('q').value);
+    window.location = "http://zzk.cnblogs.com/s?t=n&w=" + keystr;
+}
+function zzk_go_enter(event) {
+    if (event.keyCode == 13) {
+        //document.getElementById("btnZzk").focus();
+        zzk_go();
+        return false;
+    }
+}
+
+function CheckAudit() {
+    $.ajax({
+        url: '/CommonAjax/GetAuditReminder',
+        type: 'get',
+        dataType: 'text',
+        contentType: 'application/text; charset=utf-8',
+        success: function (data) {
+            if (data) {
+                var lbAuditTips = $("#lbAuditTips");
+                if (lbAuditTips) {
+                    $("#lbAuditTips").html("<div class='audit_tips'><a href='/n/audit' class='redlink'>有" + data + "条投递新闻待审核</a><br/></div>");
+                    $("#lbAuditTips").show();
+                }
+                var lbAuditTips = $("#lbMobileAuditTips");
+                if (lbAuditTips) {
+                    $("#lbMobileAuditTips").html("（<a href='/n/audit' class='redlink'>" + data + "条待审核</a>）");
+                    $("#lbMobileAuditTips").show();
+                }
+            }
+        }
+    });
+}
+
+function set_a_title(a) {
+    var text = $.trim($(a).text());
+    if (text && !$(a).attr("title")) {
+        $(a).attr("title", text);
+    }
+}
+
+function google_search() {
+    location.href = "http://zzk.cnblogs.com/s?t=n&w=" + encodeURIComponent(document.getElementById('google_search_q').value);
+    return false;
+}
+function google_search_enter(event) {
+    if (event.keyCode == 13) {
+        google_search();
+        return false;
+    }
+}
+
+$(function () {
+    removeHrefBlank();    
+});
+
+
+function ReplyVoteInComment(id, action) {
+    ReplyVote(id, action);
+}
+
+function PreReplyVote(contentId,commentId, action, postfix) {
+    if (!postfix) {
+        postfix = '';
+    }
+    var voteTips = $("#comment_vote_tips_" + postfix + commentId);
+    voteTips.html('提交中...');
+    $.ajax({
+        url: '/Comment/IsVoteNewsComment',
+        data: '{"contentId":' + contentId + ',"commentId":' + commentId + ',"action":"' + action + '"}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.IsSucceed) {
+                ReplyVote(contentId,commentId, action, postfix);
+            }
+            $(voteTips).html(data.Message);
+        },
+        error: function (xhr) {
+            $(voteTips).html(xhr.responseText);
+        }
+    });
+    return false;
+}
+
+function ReplyVote(contentId,commentId, action, postfix) {
+    if (!postfix) {
+        postfix = '';
+    }
+    var voteTips = $("#comment_vote_tips_" + postfix + commentId);
+    voteTips.html('提交中...');
+    $.ajax({
+        url: '/Comment/VoteNewsComment',
+        data: '{"contentId":' + contentId + ',"commentId":' + commentId + ',"action":"' + action + '"}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.IsSucceed) {
+                $("#agree_" + postfix + commentId).html(data.AgreeCount);
+                $("#anti_" + postfix + commentId).html(data.AntiCount);
+            }
+            $(voteTips).html(data.Message);
+        },
+        error: function (xhr) {
+            $(voteTips).html(xhr.responseText);
+        }
+    });
+    return false;
+}
+
+function VoteNews(newsId, action) {
+    $('#digg_tip_' + newsId).html('提交中...');
+    $.ajax({
+        url: '/News/VoteNews',
+        data: '{"contentId":' + newsId + ',"action":"' + action + '"}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.IsSucceed) {
+                $("#digg_num_" + newsId).text(data.DiggCount);
+                $("#bury_num_" + newsId).text(data.BuryCount);
+            }
+            $('#digg_tip_' + newsId).html(data.Message.toString());
+        },
+        error: function (xhr) {
+            $('#digg_tip_' + newsId).html(xhr.reponseText);
+        }
+    });
+}
+
+function removeHrefBlank() {
+    if (window.screen.availWidth < 1000) {
+        $('#sideleft a[target="_blank"]').removeAttr('target');
+    }
+}
+
+function LoadAjaxNewsInfo(contentId) {
+    $.ajax({
+        url: "/NewsAjax/GetAjaxNewsInfo",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { contentId: contentId },
+        success: function (data) {
+            if (data) {
+                commentCount = data.CommentCount;
+                $("#News_CommentCount_Head").text("评论(" + data.CommentCount + ")");
+                $("#News_TotalView").text("有" + data.TotalView + "人阅读");
+                $("#digg_num_" + contentId).text(data.DiggCount);
+                $("#bury_num_" + contentId).text(data.BuryCount);
+                if (data.CommentCount == 0) {
+                    $("#comment_tips").html("还没有人对此新闻发表评论，第一个发表评论。");
+                }
+                else {
+                    $("#comment_tips").html("已经有 <strong><span id=\"com_count\">" + data.CommentCount + "</span></strong> 位园友对此新闻发表了看法。");
+                }
+            }
+        }
+    });
+}
+/* 新闻列表-右侧新闻分类 */
+function LoadNewsCategory(divId, bigCateId, loadType) {
+    $.ajax({
+        url: '/Category/GetCategoryList',
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { bigCateId: bigCateId, loadType: loadType },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+        }
+    });
+}
+/* 新闻列表-右侧新闻分类（竖直方式） */
+function GetCategoryListErect(bigCateId, cateID) {
+    $.ajax({
+        url: '/Category/GetCategoryListErect',
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { bigCateId: bigCateId, cateID: cateID },
+        success: function (data) {
+            if (data) {
+                $("#NewsCategoryId").html(data);
+            }
+        }
+    });
+}
+/* 通用Ajax加载方法 */
+function CommonLoadNews(url, divId, itemCount) {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { itemCount: itemCount },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+        }
+    });
+}
+function LoadSideComments(divId, itemCount) {
+    $.ajax({
+        url: "/CommentAjax/GetSideComments",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { itemCount: itemCount },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+        }
+    });
+}
+function LoadSideCommentsByTag(divId, itemCount, tag) {
+    $.ajax({
+        url: "/CommentAjax/GetSideCommentsByTag",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { itemCount: itemCount, tag: tag },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+        }
+    });
+}
+function LoadSideCommentsByTopicId(divId, itemCount, topicId) {
+    $.ajax({
+        url: "/CommentAjax/GetSideCommentsByTopicId",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { itemCount: itemCount, topicId: topicId },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+        }
+    });
+}
+function LoadPreNextNewsByContentId(contentId) {
+$.ajax({
+    url: "/NewsAjax/GetPreNewsById",
+    type: 'GET',
+    datatype: "json",
+    contentType: "application/json; charset=utf-8",
+    data: { contentId: contentId },
+    success: function (data) {
+        if (data) {
+            $("#HeadPreNewsId").attr({ "href": "http://news.cnblogs.com/n/" + data.ContentID + "/" });
+            $("#FootPreNewsId").html("<a href=\"http://news.cnblogs.com/n/" + data.ContentID + "/\" class=\"gray\">«</a> 上一篇：<a class=\"common_link\" href=\"http://news.cnblogs.com/n/" + data.ContentID + "/\">" + data.Title + "</a><span class=\"gray\">(" + data.SubmitdateFormat + ")</span>")
+        }
+        else {
+            $("#HeadPreNewsId").css('display', 'none');
+            $("#FootPreNewsId").css('display', 'none');
+        }
+    },
+    error: function (error) {
+        $("#FootPreNewsId").html(error.responseText);
+    }
+});
+    $.ajax({
+        url: "/NewsAjax/GetNextNewsById",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { contentId: contentId },
+        success: function (data) {
+            if (data) {
+                $("#HeadNextNewsId").attr({ "href": "http://news.cnblogs.com/n/" + data.ContentID + "/" });
+                $("#FootNextNewsId").html("<a href=\"http://news.cnblogs.com/n/" + data.ContentID + "/\" class=\"gray\">»</a> 下一篇：<a class=\"common_link\" href=\"http://news.cnblogs.com/n/" + data.ContentID + "/\">" + data.Title + "</a><span class=\"gray\">(" + data.SubmitdateFormat + ")</span>")
+            }
+            else {
+                $("#HeadNextNewsId").css('display', 'none');
+                $("#FootNextNewsId").css('display', 'none');
+            }
+
+        }
+    });
+}
+function GetRelativeNews(divId, contentId, tags, itemCount) {
+    $.ajax({
+        url: '/NewsAjax/GetRelativeNews',
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { contentId: contentId, tags: tags, itemCount: itemCount },
+        success: function (data) {
+            if (data) {
+                $("#" + divId + "").html(data);
+            }
+            else {
+                $("#relative_news").css("display", "none");
+            }
+        }
+    });
+}
+function GetNewsComment(contentId) {
+	$.ajax({
+		url: '/CommentAjax/GetComments',
+		type: 'GET',
+		datatype: "json",
+		cache: false,
+		contentType: "application/json; charset=utf-8",
+		data: { contentId: contentId },
+		beforeSend: function () {
+			$("#comment_main_list").html("努力加载评论中...");
+		},
+		success: function (data) {
+			$(".user_comment").remove();
+			$("#Comment_new").empty();
+			$("#comment_main_list").html(data);
+
+			if (location.hash && /^#\d+$/g.test(location.hash)) {
+			    scrollToAnchor(location.hash.substring(1));
+			}
+		},
+		error: function () {
+			$("#comment_main_list").html("不好意思！评论加载失败！");
+		}
+	});
+}
+var scrollToAnchor = function (id) {
+    setTimeout(function () { location.hash = '#'; location.hash = id; }, 100);
+}
+function LoadIndexSideInfo() {
+    $.ajax({
+        url: '/NewsAjax/LoadIndexSideInfo',
+        type: 'GET',
+        cache: false,
+        success: function (data) {
+            if (data) {
+                $("#cate_news").before(data);
+            }
+        }
+    });
+}
+function LoadDetailommentInfo() {
+    $.ajax({
+        url: '/NewsAjax/LoadDetailommentInfo',
+        type: 'GET',
+        cache: false,
+        success: function (data) {
+            if (data) {
+                $("#comment_form_block").html(data);
+                $("#txtContent").mention({
+                    typeaheadOpts: {
+                        under: true,
+                        fixed: true
+                    }
+                });
+            }
+        }
+    });
+}
+// 加载 新闻推荐/反对状态
+function LoadNewsStatus(newsId) {
+    $.ajax({
+        url: '/News/IsDiggNews?newsId='+newsId+'',
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if(!data.IsSucceed){
+                return;
+            }
+            $('#digg_tip_' + newsId).html(data.Message.toString());
+        },
+        error: function (xhr) {
+            $('#digg_tip_' + newsId).html(xhr.reponseText);
+        }
+    });
+}

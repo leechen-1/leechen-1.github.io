@@ -1,0 +1,558 @@
+function doComment() {
+    var Content = $.trim($("#txtContent").val());
+    //var ContentID = $.trim($("#lbContentID").val());
+    Content = Content.replace(/(\n){3,}/ig, '\n\n');
+    var strComment = $("#Comment_new").html();
+    var parentCommentId = $("#ReplyToCommentId").html();
+    var title = $("#news_title").html();
+    if (Content == "") {
+        alert("评论不能为空！");
+        return;
+    }
+    else if (Content.length < 3) {
+        alert('回复的字数太少了，至少3个字吧！');
+        return;
+    }
+    $("#btnComment").val("提交中...").attr("disabled", "disabled");
+    $("#Comment_new").html("评论提交中...").css("color", "red");//.css("margin-left", "20px");
+    if ($("#Comment_Edit_ID").val() == null || $("#Comment_Edit_ID").val() == "") {
+        var insertComment = {};
+        insertComment.ContentID = ContentID;
+        insertComment.Content = Content;
+        insertComment.strComment = strComment;
+        insertComment.parentCommentId = parentCommentId;
+        insertComment.title = title;
+        $.ajax({
+            timeout: 30000, //30s
+            url: '/Comment/InsertComment',
+            data: JSON.stringify(insertComment),
+            type: 'post',
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                comment_callback(data);
+            },
+            error: function (xhr, textStatus) {
+                var data;
+                if (xhr.status == 500) {
+                    data = "抱歉！发生了错误！麻烦反馈至contact@cnblogs.com";
+                } else if (xhr.status > 0) {
+                    data = "抱歉！评论提交失败！错误信息：" + xhr.responseText;
+                } else {
+                    data = "抱歉！评论提交失败！出错原因：" + textStatus;
+                }
+                $("#btnComment").removeAttr("disabled");
+                $("#Comment_new").css('color', '').html(data);
+            }
+        });
+    }
+    else {
+        var updateComment = {};
+        updateComment.ContentID = ContentID;
+        updateComment.CommentID = $("#Comment_Edit_ID").val();
+        updateComment.CommentContent = Content;
+        $.ajax({
+            timeout: 30000, //30s
+            url: '/Comment/UpdateComment',
+            data: JSON.stringify(updateComment),
+            type: 'post',
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                comment_edit_callback(data);
+                $("#Comment_Edit_ID").val("");
+                $("#btnComment").val("提交评论");
+            },
+            error: function (xhr, textStatus) {
+                var data;
+                if (xhr.status == 500) {
+                    data="抱歉！发生了错误！麻烦反馈至contact@cnblogs.com";
+                } else if (xhr.status > 0) {
+                    data = "抱歉！评论提交失败！错误信息：" + xhr.responseText;
+                } else {
+                    data = "抱歉！评论提交失败！出错原因：" + textStatus;
+                }
+                $("#btnComment").removeAttr("disabled");
+                $("#Comment_new").css('color', '').html(data);
+            }
+        });
+    }
+}
+
+function GetAdminLink() {
+    $.ajax({
+        url: '/CommonAjax/AdminLink',
+        data: {contentId:ContentID},
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            $("#side_right_search").after(data);
+            var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if (width <= 1000) {
+                $("#news_main").after(data);
+            }
+        }
+    });
+}
+
+function QueryString(fieldName) {
+    var urlString = document.location.search;
+    if (urlString != null) {
+        var typeQu = fieldName + "=";
+        var urlEnd = urlString.indexOf(typeQu);
+        if (urlEnd != -1) {
+            var paramsUrl = urlString.substring(urlEnd + typeQu.length);
+            var isEnd = paramsUrl.indexOf('&');
+            if (isEnd != -1) {
+                return paramsUrl.substring(0, isEnd);
+            }
+            else {
+                return paramsUrl;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+    else {
+        return null;
+    }
+}
+
+function NewsLoad() {
+    if (QueryString("listorder") != null) {
+        document.getElementById("selectCommentOrder").options[QueryString("listorder")].selected = true;
+    }
+}
+
+function ctlent2(eventobject) {
+    if (eventobject.ctrlKey && eventobject.keyCode == 13) {
+        doComment();
+    }
+}
+
+function comment_callback(response) {
+    commentCount++;
+    $("#Comment_new").css('color', '').html(response.replace(/\n/g, '<br/>'));
+    if (response.indexOf("<span style='color:red'>") < 0) {
+        $("#txtContent").val("");
+    }
+    if ($("#com_count").length > 0) {
+        var com_count = parseInt($.trim($("#com_count").text()), 10);
+        $("#com_count").text(com_count + 1);
+    }
+    $("#ReplyToCommentId").html('0');
+    comment_btn_reset();
+}
+
+function comment_edit_callback(response) {
+    $("#Comment_new").css('color', '').html(response);
+    $("#txtContent").val("");
+    comment_btn_reset();
+}
+
+function comment_btn_reset() {
+    $("#btnComment").removeAttr("disabled");
+    $("#btnComment").val("提交评论");
+}
+
+function DelComment(id) {
+    var con = confirm('你确认删除该评论么？');
+    if (con) {
+        $.ajax({
+            url: '/Comment/DelComment',
+            data: '{"commentId":' +id + '}',
+            type: 'delete',
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#span_" + data).css("display", "none");
+                if ($("#com_count").length > 0) {
+                    var com_count = parseInt($.trim($("#com_count").text()), 10);
+                    $("#com_count").text(com_count > 0 ? com_count - 1 : 0);
+                }
+            },
+            error: function (msg) {
+                alert("出现异常：" + msg);
+            }
+        });
+    }
+    return;
+}
+
+function SetAuthor(commentId) {
+    $("#ReplyToCommentId").html(commentId);
+    var author = $("#comment_author_" + commentId).text();
+    document.getElementById("txtContent").focus();
+    document.getElementById("txtContent").value = "@" + author + "\n" + document.getElementById("txtContent").value;
+    return false;
+}
+
+function QuoteComment(commentId) {
+    $("#Comment_new").html('加载引用内容中...').css("color", "red").css("margin-left", "20px");
+    SetAuthor(commentId);
+    var content = $("#comment_body_" + commentId).html();
+
+    while (content.indexOf("<legend>引用</legend>") > 0) {
+        content = content.replace('<legend>引用</legend>', '');
+    }
+    content = content.replace(/<br\/?>/ig, '\n');
+    while (content.indexOf("<fieldset class=") > 0) {
+        content = content.replace(/<fieldset class=\"comment_quote\">((\w|\W)*?)<\/fieldset>/ig, '[quote]$1[/quote]');
+    }
+    content = content.replace(/<[^>]*>/g, '');
+    if (content.length > 300) {
+        content = content.substring(0, 300) + "...";
+    }
+    if (content.length > 0) {
+        content = "[quote]" + content + "[/quote]\n";
+    }
+
+    $("#txtContent").focus();
+    var text = $("#txtContent").val();
+    //text = text.replace(/^\n/g, '');
+
+    $.getScript("//common.cnblogs.com/script/encoder.js", function () {
+        content = Encoder.htmlDecode(content);
+        $("#txtContent").val(text + content);
+        $("#Comment_new").html('');
+    });
+
+}
+
+function SetCommentEdit(commentId) {
+    $("#Comment_Edit_ID").val(commentId);
+    $.ajax({
+        url: '/Comment/GetCommentContentById',
+        data: '{"commentId":"' + commentId + '"}',
+        type: 'post',
+        dataType: 'text',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            $("#txtContent").val(data);
+            $("#txtContent").focus();
+            $("#btnComment").val("修改评论");
+        },
+        error: function (xhr) {
+            $("#Comment_new").html(xhr.responseText);
+        }
+    });
+}
+
+function recommend(newsId, isRecommend) {
+    $.ajax({
+        url: '/CommonAjax/RecommendNews',
+        data: '{"contentId":' + newsId + ',"isRecommend":' + isRecommend + '}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.IsSucceed) {
+                $("#opt_recommend").css("color", "red");
+                $("#opt_recommend").html(data.Message);
+            }
+            else {
+                $("#opt_recommend").css("color", "red");
+                $("#opt_recommend").html(data.Message);
+            }
+        }
+    });
+}
+
+function hide_publish_news(newsId, lockflag) {
+    $.ajax({
+        url: '/CommonAjax/AuditNews',
+        data: '{"contentId":' + newsId + ',"lockflag":' + lockflag + ',"isEditDate":' + 0 + '}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            location.reload();
+        }
+    });
+    return false;
+}
+
+function PutInWz() {
+    var width = 460;
+    var height = 353;
+    var leftVal = (screen.width - width) / 2;
+    var topVal = (screen.height - height) / 2;
+    var d = document;
+    var t = d.selection ? (d.selection.type != 'None' ? d.selection.createRange().text : '') : (d.getSelection ? d.getSelection() : '');
+    if (t.length > 200) {
+        t = t.substring(0, 200) + "...";
+    }
+    window.open('//wz.cnblogs.com/create?t=' + encodeURIComponent(d.title) + '&u=' + encodeURIComponent(d.location.href) + '&c=' +
+	     encodeURIComponent(t) + '&i=0', '_blank', 'width=' + width + ',height=' + height + ',toolbars=0,resizable=1,left=' + leftVal + ',top=' + topVal);
+}
+
+function go_link(url) {
+    window.location = url;
+}
+
+function LogShareClick(clickName) {
+    PageClass.LogShareClick(clickName);
+}
+
+function ToTsina() {
+    var title = $("#news_title a").html();
+    var url = "https://news.cnblogs.com/n/" + ContentID + "/";
+    var t_news = "#IT新闻# " + title + "，" + url;
+    $.ajax({
+        url: '/service/NewsService.asmx/ToTsina',
+        data: "{content:'" + t_news + "'}",
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        cache: false,
+        success: function (data) {
+            if (data.d) {
+                $("#opt_tsina").css("color", "red");
+                $("#opt_tsina").html("发布成功");
+            }
+            else {
+                $("#opt_tsina").css("color", "red");
+                $("#opt_tsina").html("发布失败");
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+        }
+    });
+}
+
+function audit(newsId, lockflag) {
+    var isEditDate = 0;
+    if (lockflag == 0) {
+        isEditDate = 1;
+    }
+    $.ajax({
+        url: '/CommonAjax/AuditNews',
+        data: '{"contentId":' + newsId + ',"lockflag":' + lockflag + ',"isEditDate":' + isEditDate + '}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            $("#span_audit_" + lockflag).css("color", "red");
+            $("#span_audit_" + lockflag).html($("#lnk_audit_" + lockflag).html() + "成功");
+        }
+    });
+	return false;
+}
+
+function google_cse_load() {
+    var cses = document.createElement('script');
+    cses.type = 'text/javascript';
+    cses.src = 'http://www.google.com.hk/coop/cse/brand?form=cse-search-box&amp;lang=zh-Hans';
+    var node = document.getElementById('google_cse_holder');
+    node.parentNode.insertBefore(cses, node);
+}
+
+function loadSideAdText_New() {
+    $.ajax({
+        url: location.protocol + '//a1.cnblogs.com/units/text/T3/creative',
+        type: 'get',
+        dataType: 'html',
+        success: function (data) {
+            if (data && data.length > 10) {
+                $("#side-a1-text").html(data).css("height", "auto");
+            }
+            else {
+                $("#side-a1-text").hide();
+            }
+        }
+    });
+}
+
+$(function () {
+    try {
+        loadSideAdText_New();
+        GetAdminLink();
+    } catch (e) { }
+});
+
+function incrementViewCount(postId) {
+    if (postId) {
+        $.ajax({ url: '//counter.cnblogs.com/news/item/' + postId, type: 'get', dataType: 'script', cache: true });
+    }
+}
+
+function DelNews(newsid) {
+    var ret = confirm('是否确认删除该新闻?');
+    if (ret) {
+        $.ajax({
+            url: '/CommonAjax/DelNews',
+            data: '{"contentId":' + newsid + '}',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                window.location.href = "//news.cnblogs.com/";
+            }
+        });
+    }
+    return false;
+}
+
+function LoadAjaxNewsInfo(contentId) {
+    $.ajax({
+        url: "/NewsAjax/GetAjaxNewsInfo",
+        type: 'GET',
+        datatype: "json",
+        contentType: "application/json; charset=utf-8",
+        data: { contentId: contentId },
+        success: function (data) {
+            if (data) {
+                commentCount = data.CommentCount;
+                $("#News_CommentCount_Head").text("评论(" + data.CommentCount + ")");
+                $("#News_TotalView").text("有" + data.TotalView + "人阅读");
+                $("#digg_num_" + contentId).text(data.DiggCount);
+                $("#bury_num_" + contentId).text(data.BuryCount);
+                if (data.CommentCount == 0) {
+                    $("#comment_tips").html("还没有人对此新闻发表评论，第一个发表评论。");
+                }
+                else {
+                    $("#comment_tips").html("已经有 <strong><span id=\"com_count\">" + data.CommentCount + "</span></strong> 位园友对此新闻发表了看法。");
+                }
+            }
+        }
+    });
+}
+
+function LoadHotComments(newsId, newsCommentCount) {
+    if (newsCommentCount > 0) {
+        $.ajax({
+            url: "/CommentAjax/GetHotComments",
+            type: 'GET',
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            data: { contentId: newsId },
+            success: function (data) {
+                if (data) {
+                    $('#best_comment').html(data);
+                    $('#hot_comment_block').show();
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status == 500) {
+                    $('#best_comment').html('加载失败');
+                    $('#hot_comment_block').show();
+                } else {
+                    $('#best_comment').html(xhr.responseText);
+                    $('#hot_comment_block').show();
+                }
+            }
+        });
+    }
+}
+function get_share_links() {
+    //try {
+    //    var newsTitle = $("#news_title").html();
+    //    newsTitle = newsTitle.replace(/\"/g, '\\"');
+    //    var newsUrl = location.href;
+    //    $.ajax({
+    //        url: '/service/NewsService.asmx/GetShareLinks',
+    //        data: '{title:"' + newsTitle + '",url:"' + newsUrl + '"}',
+    //        type: 'post',
+    //        dataType: 'json',
+    //        contentType: 'application/json; charset=utf-8',
+    //        cache: false,
+    //        success: function (data) {
+    //            $("#sharebox").append(data.d);
+	//			//var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	//			//po.src = 'https://apis.google.com/js/plusone.js';
+	//			//var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    //        },
+    //        error: function (xhr) {
+    //        }
+    //    });
+    //}
+    //catch (e) { }
+}
+
+function tsina_a() {
+    var s = screen;
+    var d = document;
+    var e = encodeURIComponent;
+    var f = 'http://v.t.sina.com.cn/share/share.php?', u = d.location.href, p = ['url=', e(u), '&title=', e(d.title.replace('_IT新闻_博客园', '')), '&appkey=2924220432'].join('');
+    if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=620,height=450,left=', (s.width - 620) / 2, ',top=', (s.height - 450) / 2].join(''))) u.href = [f, p].join('');
+}
+
+function tqq_a() {
+    var s = screen;
+    var d = document;
+    var e = encodeURIComponent;
+    var f = 'http://v.t.qq.com/share/share.php?', u = d.location.href, p = ['url=', e(u), '&title=', e(d.title.replace('_IT新闻_博客园', '')), '&appkey=caffbb4e48c14ec1aa159cf61470d76a'].join('');
+    if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=620,height=450,left=', (s.width - 620) / 2, ',top=', (s.height - 450) / 2].join(''))) u.href = [f, p].join('');
+}
+
+function tsohu_a() {
+    var s = screen;
+    var d = document;
+    var e = encodeURIComponent;
+    var c = 'utf-8';
+    var f = 'http://t.sohu.com/third/post.jsp?', u = d.location.href, p = ['&url=', e(u), '&title=', e(d.title.replace('_IT新闻_博客园', '')), '&content=', c || 'gb2312', '&pic=', e(p || '')].join('');
+    if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=660,height=470,left=', (s.width - 660) / 2, ',top=', (s.height - 470) / 2].join(''))) u.href = [f, p].join('');
+}
+
+function ShareToTsina() {
+    if (/Firefox/.test(navigator.userAgent)) { setTimeout(tsina_a, 0) } else { tsina_a() };
+}
+
+function ShareToTqq() {
+    if (/Firefox/.test(navigator.userAgent)) { setTimeout(tqq_a, 0) } else { tqq_a() };
+}
+
+function ShareToTsohu() {
+    if (/Firefox/.test(navigator.userAgent)) { setTimeout(tsohu_a, 0) } else { tsohu_a() };
+}
+
+function ShareToTweixin() {
+    var url = document.location.href;
+    if (url.substring(url.length - 1)=="/") {
+        url = url.substring(0, url.length - 1);
+    }
+    var width = 420;
+    var height = 330;
+    var iTop = (window.screen.availHeight - 30 - height) / 2;       //获得窗口的垂直位置;
+    var iLeft = (window.screen.availWidth - 10 - width) / 2;           //获得窗口的水平位置;
+    var random = Math.random() * (1000 - 1) + 1;
+
+    window.open("//common.cnblogs.com/qrcode.html?url=" + encodeURIComponent(url) + "&random=" + random, "_blank", "location=no,top=" + iTop + ",left=" + iLeft + ", toolbar=no, directories=no, titlebar=yes, status=no, menubar=no, scrollbars=no,status=no, resizable=no, copyhistory=no, width=" + width + ", height=" + height + "")
+}
+
+/*
+$(function () {
+    $("#news_body").mouseup(function (e) {
+        var x = 10;
+        var y = 10;
+        var r = "";
+        if (document.selection) {
+            r = document.selection.createRange().text;
+        }
+        else if (window.getSelection()) {
+            r = window.getSelection();
+        }
+        if (r != "") {
+            var bowen = "发送至新浪微博";
+            var tooltip = "<div id='tooltip' class='sharetooltip'><a onclick=ask('" + encodeURIComponent(r) + "')>" + bowen + "</a></div>";
+            $("body").append(tooltip);
+            $("#tooltip").css({
+                "top": (e.pageY + y) + "px",
+                "left": (e.pageX + x) + "px",
+                "position": "absolute"
+            }).show("fast");
+        }
+    }).mousedown(function () {
+        $("#tooltip").remove();
+    });
+})
+*/
+
+function ask(r) {
+    if (r != "") {
+        window.open('http://v.t.sina.com.cn/share/share.php?searchPic=false&title=' + decodeURIComponent(r) + '&url=' + location.href + '&source=博客园&sourceUrl=http://news.cnblogs.com&content=utf-8&appkey=2970785141', '_blank', 'height=515, width=598, toolbar=no, menubar=no, scrollbars=auto, resizable=yes, location=no, status=yes');
+    }
+}

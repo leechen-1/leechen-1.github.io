@@ -1,0 +1,283 @@
+﻿* {
+    font-family: 'Helvetica Neue','Helvetica','Arial','sans-serif' !important;
+}
+
+body {
+    font-size: 15px;
+}
+
+#sideright {
+    display: none;
+}
+
+#main_wrapper {
+    width: 100%;
+    overflow: scroll;
+}
+
+#wrap {
+    display: none;
+}
+
+#main_header {
+    display: none;
+}
+
+.mainmenu {
+    width: 100%;
+}
+
+.feedback_block {
+    display: none;
+}
+
+#navlist_main li:first-child {
+    margin-left: 0px !important;
+}
+
+#navlist_main li a {
+    padding-right: 3px;
+    padding-left: 3px;
+    margin-left: 0px;
+}
+.digg_gray_box {
+    color: gray !important;
+    font-size:12px !important;
+    padding-top: 5px;
+}
+.digg_gray {
+    color: gray !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#sideleft {
+    float: none;
+    width: 100%;
+}
+
+#navcontainer {
+    margin-top: 5px;
+    margin-right: 1px;
+}
+
+#navlist {
+    padding-right: 5px;
+}
+
+#news_list {
+    padding: 0px 5px 0px 5px;
+    margin-top: 10px;
+}
+
+.action {
+    display: none;
+}
+
+.topic_img {
+    float: left;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+.content {
+    width: 100%;
+    margin-right: 0px;
+    float: right;
+}
+
+.friendlink {
+    display: none;
+}
+
+#guide {
+    display: block !important;
+    margin-top: 5px;
+    margin-left: 5px;
+    float: none;
+}
+
+#news_main {
+    margin-top: 5px;
+}
+
+#news_body * {
+    font-size: 16px !important;
+}
+
+#news_body img {
+    max-width: 100%;
+    height: auto;
+}
+
+#news_title {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.news_poster {
+    display: none;
+}
+
+#news_info .comment, #news_info .time {
+    margin-right: 5px;
+}
+
+    #news_info .comment a {
+        text-decoration: none;
+    }
+
+#news_info .wz {
+    display: none;
+}
+
+#news_info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#news_body {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#news_otherinfo {
+    margin-top: 5px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+}
+
+#up_down {
+    margin-bottom: 0px;
+}
+
+#come_from {
+    margin-left: 0px;
+}
+
+#article_A4area {
+    padding: 10px 0px 10px 0px;
+    width: 100%;
+}
+
+#div-gpt-ad-1346331527896-3 {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#comment_main {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.comment_main {
+    padding-left: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.user_comment {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.qitem_reply {
+    margin-left: 0px;
+}
+
+#txtContent {
+    width: 100% !important;
+    height: 100px !important;
+}
+
+#foot {
+    display: none;
+}
+
+#footer {
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    height: 100%;
+}
+
+#footMobile {
+    display: block !important;
+    border-top: 1px solid #E8E8E8;
+    margin-top: 10px;
+    padding-top: 5px;
+    height: 25px;
+    text-align: center;
+}
+
+#comments_list_block, .comment_block {
+    width: 100%;
+}
+
+#comment_news_title {
+    width: 50%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#pages {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    float: none;
+    padding-right: 0px;
+}
+
+#pager {
+    margin: 15px 0;
+    text-align: center;
+    padding-right: 0px;
+}
+
+#goTop {
+    width: 100%;
+    margin-left: 0px !important;
+}
+
+    #goTop a {
+        right: 5px;
+        right: 5px;
+        width: 43px;
+        position: absolute;
+        height: 15px;
+        bottom: 0px;
+    }
+
+.comment_quote {
+    padding-top: 10px !important;
+}
+
+fieldset {
+    margin-top: 10px !important;
+}
+
+legend {
+    float: left;
+    margin-top: -20px;
+    background: #FAFAFA;
+}
+
+.news_detail_opt {
+    text-align: center !important;
+}
+
+    .news_detail_opt a {
+        padding: 0px 5px !important;
+    }
+
+.e4-dfp {
+   display: none;
+}
+
+p img {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
