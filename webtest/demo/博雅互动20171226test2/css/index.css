@@ -1,0 +1,84 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+body{
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+#header{
+	background-color: #191D39;
+}
+.wrap{
+	width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#header h1{
+	padding: 10px 0 0 20px;
+	margin-right: 48px;
+}
+#header #logo a{
+	display: block;
+	width: 157px;
+	height: 35px;
+	background: url(../images/logo.png);
+	text-indent: -9999px;
+}
+#header #nav a{
+	display: inline-block;
+	width: 85px;
+	height: 58px;
+	line-height: 58px;
+	text-align: center;
+	border-right: 1px solid #252947;
+	color: #818496;
+}
+#header #nav a:hover{
+	color: #e2e4ed;
+}
+#header #nav .current{
+	background-color: #252947;
+	color: #e2e4ed;
+	border-left: 1px solid #252947;
+	border-right: 1px solid #252947;
+}
+#header #nav .join{
+	width: 98px;
+	height: 32px;
+	line-height: 32px;
+	background-color: #37B873;
+	border: 1px solid #3aca7a;
+	border-radius: 3px;
+	color: #fff;
+	margin-left: 9px;
+}
+#header #nav .join:hover{
+	color: #fff;
+	background-color: #2BA364;
+	transition: background-color 0.2s linear 0s;
+}
+#header #lang a{
+	line-height: 58px;
+	color: #444866;
+}
+#header #lang #cn{
+	color: #38b774;
+	margin-right: 10px;
+}
+#header #lang #en:hover{
+	color: #38b774;
+}
